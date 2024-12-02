@@ -37,8 +37,7 @@ public class LoginRegisterView implements IResizeImage{
         panel.setLayout(null);
         panel.setBackground(Color.white);
 
-        String profileIconPath = "src/Assets/user.png";
-        ImageIcon profileIcon = IResizeImage.resizeImage(profileIconPath,175,175);
+        ImageIcon profileIcon = IResizeImage.resizeImage("src/Assets/user.png",175,175);
 
         JLabel profileIconLabel = new JLabel(profileIcon);
         profileIconLabel.setBounds(200,35,200,200);
@@ -89,7 +88,7 @@ public class LoginRegisterView implements IResizeImage{
         panel2.setLayout(null);
         panel2.setBackground(Color.white);
 
-        ImageIcon profileIcon2 = IResizeImage.resizeImage(profileIconPath,150,150);
+        ImageIcon profileIcon2 = IResizeImage.resizeImage("src/Assets/user.png",150,150);
 
         JLabel profileIconLabel2 = new JLabel(profileIcon2);
         profileIconLabel2.setBounds(200,20,200,200);
