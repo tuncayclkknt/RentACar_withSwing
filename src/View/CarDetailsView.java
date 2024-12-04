@@ -2,7 +2,6 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.security.PublicKey;
 
 public class CarDetailsView {
 
@@ -58,6 +57,31 @@ public class CarDetailsView {
         button.setBackground(new Color(0, 56, 255,255));
         button.setForeground(new Color(255, 255, 255,255));
 
+        button.addActionListener(e->{
+
+            String message = "You will pay " + (int)spinner.getValue()*1200 + "₺";
+            String title = "Summary";
+
+            Object[] options = {"Accept","Deny"};
+
+            int result = JOptionPane.showOptionDialog(
+                    frame,
+                    message,
+                    title,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]
+            );
+
+            if (result == JOptionPane.YES_OPTION)
+                JOptionPane.showMessageDialog(frame,"You get the car.","Result",JOptionPane.INFORMATION_MESSAGE);
+            else if (result == JOptionPane.NO_OPTION)
+                JOptionPane.showMessageDialog(frame,"Payment is canceled.","Result",JOptionPane.WARNING_MESSAGE);
+
+        });
+
         frame.add(button);
         frame.add(spinner);
         frame.add(last);
@@ -70,5 +94,9 @@ public class CarDetailsView {
 
     public void show(){
         frame.setVisible(true);
+    }
+
+    public boolean isVisibleForScreen(){
+        return frame.isVisible();
     }
 }

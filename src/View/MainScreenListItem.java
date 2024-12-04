@@ -14,6 +14,8 @@ public class MainScreenListItem {
     private final JLabel priceLabel;
     private final JPanel panel;
 
+    private CarDetailsView carDetailsView;
+
     //to put panels manually, top margin is 20 px
     private static int yCoordinate = 20;
     private static int counter = 0;
@@ -66,8 +68,12 @@ public class MainScreenListItem {
         counter++;
 
         button.addActionListener(e->{
-            CarDetailsView view = new CarDetailsView();
-            view.show();
+            if (carDetailsView == null)
+                carDetailsView = new CarDetailsView();
+
+            if (!carDetailsView.isVisibleForScreen())
+                carDetailsView.show();
+
         });
 
         panel.add(photoLabel);

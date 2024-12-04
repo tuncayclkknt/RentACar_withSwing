@@ -3,10 +3,10 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class HistoryPageView {
+public class MyRentsView {
     JFrame frame;
 
-    public HistoryPageView() {
+    public MyRentsView() {
         frame = new JFrame("History");
         frame.setResizable(false);
         frame.setSize(400,800);
@@ -57,5 +57,9 @@ public class HistoryPageView {
 
     public void show(){
         frame.setVisible(true);
+    }
+
+    public boolean isVisibleForScreen(){
+        return frame.isVisible();
     }
 }

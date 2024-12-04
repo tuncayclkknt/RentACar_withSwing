@@ -144,4 +144,8 @@ public class ProfileScreenView {
     public void show(){
         frame.setVisible(true);
     }
+
+    public boolean isVisibleForScreen(){
+        return frame.isVisible();
+    }
 }

@@ -2,7 +2,6 @@ package View;
 
 import Cars.Car;
 import Cars.Sedan;
-import com.formdev.flatlaf.FlatIntelliJLaf;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +18,11 @@ public class MainScreenView {
     private final JToggleButton btnFilter;
     private final JToggleButton btnSort;
 
+    private ProfileScreenView profileScreenView;
+    private MyRentsView myRentsView;
+    private AdminPageView adminPageView;
 
     public MainScreenView() {
-
-//        FlatIntelliJLaf.setup();
 
         frame = new JFrame();
         frame.setResizable(false);
@@ -76,8 +76,11 @@ public class MainScreenView {
         btnAdminPage.setFont(new Font("Arial", Font.PLAIN, 18));
 
         btnAdminPage.addActionListener(e->{
-            AdminPageView view = new AdminPageView();
-            view.show();
+             if (adminPageView == null)
+                 adminPageView = new AdminPageView();
+
+             if (!adminPageView.isVisibleForScreen())
+                 adminPageView.show();
         });
 
 
@@ -237,13 +240,20 @@ public class MainScreenView {
         myRentsLabel.setBounds(182,110,130,30);
 
         btnProfilePage.addActionListener(e -> {
-            ProfileScreenView view = new ProfileScreenView();
-            view.show();
+
+            if (profileScreenView == null)
+                profileScreenView = new ProfileScreenView();
+
+            if (!profileScreenView.isVisibleForScreen())
+                profileScreenView.show();
         });
 
         btnMyRents.addActionListener(e->{
-            HistoryPageView view = new HistoryPageView();
-            view.show();
+            if (myRentsView == null)
+                myRentsView = new MyRentsView();
+
+            if (!myRentsView.isVisibleForScreen())
+                myRentsView.show();
         });
 
 
