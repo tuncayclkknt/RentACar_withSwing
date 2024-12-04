@@ -69,6 +69,18 @@ public class MainScreenView {
         scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPanel.setBounds(150, 180, 700, 500);
 
+        JButton btnAdminPage = new JButton("Admin Page");
+        btnAdminPage.setBounds(700,700,150,40);
+        btnAdminPage.setBackground(new Color(0, 56, 255,255));
+        btnAdminPage.setForeground(new Color(255, 255, 255,255));
+        btnAdminPage.setFont(new Font("Arial", Font.PLAIN, 18));
+
+        btnAdminPage.addActionListener(e->{
+            AdminPageView view = new AdminPageView();
+            view.show();
+        });
+
+
         // Search Panel
         ImageIcon searchIcon = IResizeImage.resizeImage("src/Assets/search.png",
                 20,20);
@@ -80,7 +92,7 @@ public class MainScreenView {
         searchPanel.setBackground(new Color(171, 252, 255,50));
 
         JTextField search = new JTextField();
-        search.setBounds(10,10, 300,40);
+        search.setBounds(10,10, 290,40);
         search.setFont(new Font("Arial", Font.PLAIN, 20));
 
         JButton btnSearch = new JButton();
@@ -201,48 +213,46 @@ public class MainScreenView {
             }
         });
 
-        //Profile btn panel
-        JPanel profileButtonPanel = new JPanel();
-        profileButtonPanel.setLayout(null);
-        profileButtonPanel.setBorder(new RoundedBorder(15));
-        profileButtonPanel.setBounds(720,20,130,130);
-        profileButtonPanel.setBackground(new Color(248, 0, 255,20));
-
+        //Profile btn and label
         ImageIcon profileButtonImage = IResizeImage.resizeImage("src/Assets/user.png",
                 60,60);
         JButton btnProfilePage = new JButton();
         btnProfilePage.setIcon(profileButtonImage);
-        btnProfilePage.setBounds(30,10,75,75);
-        profileButtonPanel.add(btnProfilePage);
+        btnProfilePage.setBackground(new Color(0, 51, 255,20));
+        btnProfilePage.setBounds(750,30,75,75);
 
-        JLabel profileLabel = new JLabel("Profile Page");
+        JLabel profileLabel = new JLabel("My Profile");
         profileLabel.setFont(new Font("Arial", Font.PLAIN, 17));
-        profileLabel.setBounds(20,90,130,30);
-        profileButtonPanel.add(profileLabel);
+        profileLabel.setBounds(750,110,130,30);
 
-        //History btn panel
-        JPanel historyButtonPanel = new JPanel();
-        historyButtonPanel.setLayout(null);
-        historyButtonPanel.setBorder(new RoundedBorder(15));
-        historyButtonPanel.setBounds(150,20,130,130);
-        historyButtonPanel.setBackground(new Color(248, 0, 255,20));
+        ImageIcon myRentsButtonImage = IResizeImage.resizeImage("src/Assets/car-alt.png",
+                50,50);
+        JButton btnMyRents = new JButton();
+        btnMyRents.setIcon(myRentsButtonImage);
+        btnMyRents.setBounds(180,30,75,75);
+        btnMyRents.setBackground(new Color(0, 51, 255,20));
 
-        ImageIcon historyButtonImage = IResizeImage.resizeImage("src/Assets/user.png",
-                60,60);
-        JButton btnHistoryPage = new JButton();
-        btnHistoryPage.setIcon(historyButtonImage);
-        btnHistoryPage.setBounds(30,10,75,75);
-        historyButtonPanel.add(btnHistoryPage);
+        JLabel myRentsLabel = new JLabel("My Rents");
+        myRentsLabel.setFont(new Font("Arial", Font.PLAIN, 17));
+        myRentsLabel.setBounds(182,110,130,30);
 
-        JLabel historyLabel = new JLabel("Profile Page");
-        historyLabel.setFont(new Font("Arial", Font.PLAIN, 17));
-        historyLabel.setBounds(20,90,130,30);
-        historyButtonPanel.add(historyLabel);
+        btnProfilePage.addActionListener(e -> {
+            ProfileScreenView view = new ProfileScreenView();
+            view.show();
+        });
+
+        btnMyRents.addActionListener(e->{
+            HistoryPageView view = new HistoryPageView();
+            view.show();
+        });
 
 
         //classic addings cart curt.
-        frame.add(profileButtonPanel);
-        frame.add(historyButtonPanel);
+        frame.add(btnAdminPage);
+        frame.add(btnProfilePage);
+        frame.add(profileLabel);
+        frame.add(btnMyRents);
+        frame.add(myRentsLabel);
         frame.add(insideSortPanel);
         frame.add(insideFilterPanel);
         frame.add(filterPanel);
@@ -283,5 +293,9 @@ public class MainScreenView {
 
     public JToggleButton getBtnFilter() {
         return btnFilter;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }

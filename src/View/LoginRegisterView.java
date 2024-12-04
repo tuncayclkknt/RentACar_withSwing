@@ -188,4 +188,8 @@ public class LoginRegisterView implements IResizeImage{
         panel.setVisible(false);
         frame.setVisible(false);
     }
+
+    public JFrame getFrame() {
+        return frame;
+    }
 }

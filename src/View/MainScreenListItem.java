@@ -65,6 +65,11 @@ public class MainScreenListItem {
         yCoordinate += 110;
         counter++;
 
+        button.addActionListener(e->{
+            CarDetailsView view = new CarDetailsView();
+            view.show();
+        });
+
         panel.add(photoLabel);
         panel.add(priceLabel);
         panel.add(button);
