@@ -1,34 +1,43 @@
 package View;
 
 import com.formdev.flatlaf.*;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class LoginRegisterView implements IResizeImage{
+public class LoginRegisterView extends JFrame implements IResizeImage{
 
     private final JPanel panel;
     private final JPanel panel2;
 
-    private final JFrame frame;
+//    private final JFrame frame;
+
+    private final JTextField usernameField;
+    private final JPasswordField passwordField;
+    private JTextField nameField;
+    private JTextField surnameField;
+    private JTextField usernameField2;
+    private JPasswordField passwordField2;
 
     private final JButton btnLoginPage;
     private final JButton btnRegisterPage;
+    private final JButton btnLogin;
+    private final JButton btnRegister;
 
     public LoginRegisterView() {
 
         FlatLightLaf.setup();
 
-        frame = new JFrame();
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,800);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.white);
+//        frame = new JFrame();
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1000,800);
+        setLocationRelativeTo(null);
+        setLayout(null);
+        getContentPane().setBackground(Color.white);
 
         panel = new JPanel();
         Border border = new TitledBorder("");
@@ -50,7 +59,7 @@ public class LoginRegisterView implements IResizeImage{
         usernameLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 24));
         usernameLabel.setBounds(130,340,140,30);
 
-        JTextField usernameField = new JTextField();
+        usernameField = new JTextField();
         usernameField.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
         usernameField.setBounds(270,335,200,40);
 
@@ -58,20 +67,14 @@ public class LoginRegisterView implements IResizeImage{
         passwordLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 24));
         passwordLabel.setBounds(130,400,140,30);
 
-        JPasswordField passwordField = new JPasswordField();
+        passwordField = new JPasswordField();
         passwordField.setFont(new Font("Arial", Font.PLAIN, 24));
         passwordField.setBounds(270,395,200,40);
 
-        JButton btnLogin = new JButton("Login");
+        btnLogin = new JButton("Login");
         btnLogin.setBackground(new Color(166,255,228));
         btnLogin.setBounds(235,470,130,50);
         btnLogin.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
-
-        btnLogin.addActionListener(e->{
-            MainScreenView view = new MainScreenView();
-            view.show();
-            this.hide();
-        });
 
         panel.add(btnLogin);
         panel.add(passwordField);
@@ -87,6 +90,7 @@ public class LoginRegisterView implements IResizeImage{
         panel2.setBounds(200,10,600,600);
         panel2.setLayout(null);
         panel2.setBackground(Color.white);
+        panel2.setVisible(false);
 
         ImageIcon profileIcon2 = IResizeImage.resizeImage("src/Assets/user.png",150,150);
 
@@ -97,7 +101,7 @@ public class LoginRegisterView implements IResizeImage{
         nameLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 24));
         nameLabel.setBounds(130,270,140,30);
 
-        JTextField nameField = new JTextField();
+        nameField = new JTextField();
         nameField.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
         nameField.setBounds(270,265,200,40);
 
@@ -105,7 +109,7 @@ public class LoginRegisterView implements IResizeImage{
         surnameLabel.setFont(new Font("Lucida Sans", Font.PLAIN, 24));
         surnameLabel.setBounds(130,330,140,30);
 
-        JTextField surnameField = new JTextField();
+        surnameField = new JTextField();
         surnameField.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
         surnameField.setBounds(270,325,200,40);
 
@@ -113,7 +117,7 @@ public class LoginRegisterView implements IResizeImage{
         usernameLabel2.setFont(new Font("Lucida Sans", Font.PLAIN, 24));
         usernameLabel2.setBounds(130,390,140,30);
 
-        JTextField usernameField2 = new JTextField();
+        usernameField2 = new JTextField();
         usernameField2.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
         usernameField2.setBounds(270,385,200,40);
 
@@ -121,7 +125,7 @@ public class LoginRegisterView implements IResizeImage{
         passwordLabel2.setFont(new Font("Lucida Sans", Font.PLAIN, 24));
         passwordLabel2.setBounds(130,450,140,30);
 
-        JPasswordField passwordField2 = new JPasswordField();
+        passwordField2 = new JPasswordField();
         passwordField2.setFont(new Font("Arial", Font.PLAIN, 24));
         passwordField2.setBounds(270,445,200,40);
 
@@ -129,7 +133,7 @@ public class LoginRegisterView implements IResizeImage{
         descriptionLabel2.setFont(new Font("Lucida Sans", Font.BOLD,24));
         descriptionLabel2.setBounds(150,215,300,30);
 
-        JButton btnRegister = new JButton("Register");
+        btnRegister = new JButton("Register");
         btnRegister.setBackground(new Color(166,255,228));
         btnRegister.setBounds(235,510,130,50);
         btnRegister.setFont(new Font("Lucida Sans", Font.PLAIN, 20));
@@ -171,25 +175,47 @@ public class LoginRegisterView implements IResizeImage{
             btnRegisterPage.setEnabled(true);
         });
 
-        frame.add(btnRegisterPage);
-        frame.add(btnLoginPage);
-        frame.add(panel);
-        frame.add(panel2);
+        add(btnRegisterPage);
+        add(btnLoginPage);
+        add(panel);
+        add(panel2);
     }
 
-    public void show(){
-        panel2.setVisible(false);
-        panel.setVisible(true);
-        frame.setVisible(true);
+//    public void show(){
+//        panel2.setVisible(false);
+//        panel.setVisible(true);
+//        setVisible(true);
+//    }
+
+    public void addLoginListener(ActionListener listener){
+        btnLogin.addActionListener(listener);
     }
 
-    public void hide(){
-        panel2.setVisible(false);
-        panel.setVisible(false);
-        frame.setVisible(false);
+    public void addRegisterListener(ActionListener listener){
+        btnRegister.addActionListener(listener);
     }
 
-    public JFrame getFrame() {
-        return frame;
+    public String getUsernameLogin(){
+        return usernameField.getText();
+    }
+
+    public String getPasswordLogin(){
+        return new String(passwordField.getPassword());
+    }
+
+    public String getNameRegister(){
+        return usernameField2.getText();
+    }
+
+    public String getSurnameRegister(){
+        return surnameField.getText();
+    }
+
+    public String getUsernameRegister(){
+        return usernameField2.getText();
+    }
+
+    public String getPasswordRegister(){
+        return new String(passwordField2.getPassword());
     }
 }

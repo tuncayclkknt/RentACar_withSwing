@@ -1,6 +1,6 @@
-package Cars;
+package Model;
 
-public class Car {
+public class CarModel {
     private String make;
     private String model;
     private int year;
@@ -8,8 +8,8 @@ public class Car {
     private String tinyPhotoPath;
     private String bigPhotoPath;
 
-    public Car(String make, String model, int year, double dailyPrice,
-                 String tinyPhotoPath, String bigPhotoPath) {
+    public CarModel(String make, String model, int year, double dailyPrice,
+                    String tinyPhotoPath, String bigPhotoPath) {
         this.make = make;
         this.model = model;
         this.year = year;

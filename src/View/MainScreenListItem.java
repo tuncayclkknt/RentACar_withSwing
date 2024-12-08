@@ -1,6 +1,6 @@
 package View;
 
-import Cars.Car;
+import Model.CarModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,16 +24,16 @@ public class MainScreenListItem {
         return counter;
     }
 
-    public MainScreenListItem(Car car) {
+    public MainScreenListItem(CarModel carModel) {
 
         ImageIcon angleRight = IResizeImage.resizeImage("src/Assets/angle-right.png",30,30);
-        ImageIcon icon2 = IResizeImage.resizeImage(car.getTinyPhotoPath(),80,80);
+        ImageIcon icon2 = IResizeImage.resizeImage(carModel.getTinyPhotoPath(),80,80);
 
         photoLabel = new JLabel(icon2);
         button = new JButton();
-        makeLabel = new JLabel(car.getMake());
-        modelLabel = new JLabel(car.getModel());
-        priceLabel = new JLabel(car.getDailyPrice() + " TL");
+        makeLabel = new JLabel(carModel.getMake());
+        modelLabel = new JLabel(carModel.getModel());
+        priceLabel = new JLabel(carModel.getDailyPrice() + " TL");
         panel = new JPanel();
 
         panel.setLayout(null);

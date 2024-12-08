@@ -1,7 +1,7 @@
 package View;
 
-import Cars.Car;
-import Cars.Sedan;
+import Model.CarModel;
+import Model.Sedan;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class MainScreenView {
 
 
         //our items
-        Car mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
+        CarModel mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
                 "src/Assets/mercedes-benz.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
