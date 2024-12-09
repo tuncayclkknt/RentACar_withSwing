@@ -3,15 +3,19 @@ package View;
 import Model.CarModel;
 import Model.Sedan;
 
+import javax.accessibility.AccessibleIcon;
+import javax.print.attribute.standard.JobName;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainScreenView {
-
-    private final JFrame frame;
+public class MainScreenView extends JFrame{
 
     private final JPanel insideFilterPanel;
     private final JPanel insideSortPanel;
+    private JPanel carsCards;
 
     private JButton btnApplyFilter;
     private final JButton btnApplySort;
@@ -21,29 +25,35 @@ public class MainScreenView {
     private ProfileScreenView profileScreenView;
     private MyRentsView myRentsView;
     private AdminPageView adminPageView;
+    private MainScreenListItem mainScreenListItem;
+
+    private JButton btnAdminPage;
+    private JButton btnProfilePage;
+    private JButton btnMyRents;
+
+    private static List<JPanel> cardItems = new ArrayList<>();
 
     public MainScreenView() {
 
-        frame = new JFrame();
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,800);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.white);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1000,800);
+        setLocationRelativeTo(null);
+        setLayout(null);
+        getContentPane().setBackground(Color.white);
 
-        JPanel carsCards = new JPanel();
+        carsCards = new JPanel();
         carsCards.setLayout(null);
         carsCards.setBackground(new Color(231, 214, 255,50));
 //        carsCards.setBackground(Color.white);
 
 
         //our items
-        CarModel mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
-                "src/Assets/mercedes-benz.png",
-                "src/Assets/mercedes_c180amg_2018.jpg");
-
-        MainScreenListItem item = new MainScreenListItem(mercedes1);
+//        CarModel mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
+//                "src/Assets/mercedes-benz.png",
+//                "src/Assets/mercedes_c180amg_2018.jpg");
+//
+//        MainScreenListItem item = new MainScreenListItem(mercedes1);
 
         //this part needed for create scrollable panel, I found it after ~100 trying and
         //update -> I put this part after creating cars because of counter increment.
@@ -62,27 +72,35 @@ public class MainScreenView {
          */
 
         //add them in a panel
-        carsCards.add(item.getPanel());
+//        carsCards.add(item);
+
+//        for (JPanel panel : mainScreenListItem.getItems()){
+//            carsCards.add(panel);
+//        }
+
+
+//        for (JPanel items: cardItems){
+//            carsCards.add(items);
+//        }
 
         //classic scroll pane
         JScrollPane scrollPanel = new JScrollPane(carsCards);
         scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPanel.setBounds(150, 180, 700, 500);
 
-        JButton btnAdminPage = new JButton("Admin Page");
+        btnAdminPage = new JButton("Admin Page");
         btnAdminPage.setBounds(700,700,150,40);
         btnAdminPage.setBackground(new Color(0, 56, 255,255));
         btnAdminPage.setForeground(new Color(255, 255, 255,255));
         btnAdminPage.setFont(new Font("Arial", Font.PLAIN, 18));
 
-        btnAdminPage.addActionListener(e->{
-             if (adminPageView == null)
-                 adminPageView = new AdminPageView();
-
-             if (!adminPageView.isVisibleForScreen())
-                 adminPageView.show();
-        });
-
+//        btnAdminPage.addActionListener(e->{
+//             if (adminPageView == null)
+//                 adminPageView = new AdminPageView();
+//
+//             if (!adminPageView.isVisibleForScreen())
+//                 adminPageView.setVisible(true);
+//        });
 
         // Search Panel
         ImageIcon searchIcon = IResizeImage.resizeImage("src/Assets/search.png",
@@ -219,7 +237,7 @@ public class MainScreenView {
         //Profile btn and label
         ImageIcon profileButtonImage = IResizeImage.resizeImage("src/Assets/user.png",
                 60,60);
-        JButton btnProfilePage = new JButton();
+        btnProfilePage = new JButton();
         btnProfilePage.setIcon(profileButtonImage);
         btnProfilePage.setBackground(new Color(0, 51, 255,20));
         btnProfilePage.setBounds(750,30,75,75);
@@ -230,7 +248,7 @@ public class MainScreenView {
 
         ImageIcon myRentsButtonImage = IResizeImage.resizeImage("src/Assets/car-alt.png",
                 50,50);
-        JButton btnMyRents = new JButton();
+        btnMyRents = new JButton();
         btnMyRents.setIcon(myRentsButtonImage);
         btnMyRents.setBounds(180,30,75,75);
         btnMyRents.setBackground(new Color(0, 51, 255,20));
@@ -239,44 +257,56 @@ public class MainScreenView {
         myRentsLabel.setFont(new Font("Arial", Font.PLAIN, 17));
         myRentsLabel.setBounds(182,110,130,30);
 
-        btnProfilePage.addActionListener(e -> {
+//        btnProfilePage.addActionListener(e -> {
+//
+//            if (profileScreenView == null)
+//                profileScreenView = new ProfileScreenView();
+//
+//            if (!profileScreenView.isVisibleForScreen())
+//                profileScreenView.show();
+//        });
 
-            if (profileScreenView == null)
-                profileScreenView = new ProfileScreenView();
-
-            if (!profileScreenView.isVisibleForScreen())
-                profileScreenView.show();
-        });
-
-        btnMyRents.addActionListener(e->{
-            if (myRentsView == null)
-                myRentsView = new MyRentsView();
-
-            if (!myRentsView.isVisibleForScreen())
-                myRentsView.show();
-        });
+//        btnMyRents.addActionListener(e->{
+//            if (myRentsView == null)
+//                myRentsView = new MyRentsView();
+//
+//            if (!myRentsView.isVisibleForScreen())
+//                myRentsView.show();
+//        });
 
 
         //classic addings cart curt.
-        frame.add(btnAdminPage);
-        frame.add(btnProfilePage);
-        frame.add(profileLabel);
-        frame.add(btnMyRents);
-        frame.add(myRentsLabel);
-        frame.add(insideSortPanel);
-        frame.add(insideFilterPanel);
-        frame.add(filterPanel);
-        frame.add(sortPanel);
-        frame.add(searchPanel);
-        frame.add(scrollPanel);
+        add(btnAdminPage);
+        add(btnProfilePage);
+        add(profileLabel);
+        add(btnMyRents);
+        add(myRentsLabel);
+        add(insideSortPanel);
+        add(insideFilterPanel);
+        add(filterPanel);
+        add(sortPanel);
+        add(searchPanel);
+        add(scrollPanel);
     }
 
-    public void show(){
-        frame.setVisible(true);
+    public void addAdminPageListener(ActionListener listener){
+        btnAdminPage.addActionListener(listener);
     }
 
-    public void hide(){
-        frame.setVisible(false);
+    public void addFilterListener(ActionListener listener){
+        btnFilter.addActionListener(listener);
+    }
+
+    public void addSortListener(ActionListener listener){
+        btnSort.addActionListener(listener);
+    }
+
+    public void addProfilePageListener(ActionListener listener){
+        btnProfilePage.addActionListener(listener);
+    }
+
+    public void addMyRentsPageListener(ActionListener listener){
+        btnMyRents.addActionListener(listener);
     }
 
     //------------
@@ -305,7 +335,11 @@ public class MainScreenView {
         return btnFilter;
     }
 
-    public JFrame getFrame() {
-        return frame;
+    public JPanel getCarsCards() {
+        return carsCards;
+    }
+
+    public static List<JPanel> getCardItems() {
+        return cardItems;
     }
 }

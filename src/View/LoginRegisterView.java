@@ -181,12 +181,6 @@ public class LoginRegisterView extends JFrame implements IResizeImage{
         add(panel2);
     }
 
-//    public void show(){
-//        panel2.setVisible(false);
-//        panel.setVisible(true);
-//        setVisible(true);
-//    }
-
     public void addLoginListener(ActionListener listener){
         btnLogin.addActionListener(listener);
     }

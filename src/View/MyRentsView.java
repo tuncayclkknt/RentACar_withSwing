@@ -3,22 +3,20 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyRentsView {
-    JFrame frame;
+public class MyRentsView extends JFrame{
 
     public MyRentsView() {
-        frame = new JFrame("History");
-        frame.setResizable(false);
-        frame.setSize(400,800);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.white);
+        setResizable(false);
+        setSize(400,800);
+        setLayout(null);
+        getContentPane().setBackground(Color.white);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        int frameHeight = frame.getHeight();
+        int frameHeight = getHeight();
 
         int x = 0;
         int y = (screenSize.height - frameHeight - 50) / 2;
-        frame.setLocation(x, y);
+        setLocation(x, y);
 
         JLabel activeRentLabel = new JLabel("Active Rents");
         activeRentLabel.setBounds(30,50,130,30);
@@ -48,18 +46,13 @@ public class MyRentsView {
         thereIsNoting2.setBounds(60,45,200,30);
         activeRentsPanel.add(thereIsNoting2);
 
-
-        frame.add(activeRentLabel);
-        frame.add(historyLabel);
-        frame.add(activeRentsPanel);
-        frame.add(historyPanel);
-    }
-
-    public void show(){
-        frame.setVisible(true);
+        add(activeRentLabel);
+        add(historyLabel);
+        add(activeRentsPanel);
+        add(historyPanel);
     }
 
     public boolean isVisibleForScreen(){
-        return frame.isVisible();
+        return isVisible();
     }
 }

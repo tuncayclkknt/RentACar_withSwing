@@ -3,23 +3,22 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProfileScreenView {
-    private final JFrame frame;
+public class ProfileScreenView extends JFrame {
 
     public ProfileScreenView() {
-        frame = new JFrame("Profile");
-        frame.setResizable(false);
-        frame.setSize(400,800);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.white);
+
+        setResizable(false);
+        setSize(400,800);
+        setLayout(null);
+        getContentPane().setBackground(Color.white);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameWidth = frame.getWidth();
-        int frameHeight = frame.getHeight();
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
 
         int x = screenSize.width - frameWidth;
         int y = (screenSize.height - frameHeight - 50) / 2;
-        frame.setLocation(x, y);
+        setLocation(x, y);
 
         ImageIcon profileIcon = IResizeImage.resizeImage("src/Assets/user.png",
                 100,100);
@@ -134,18 +133,14 @@ public class ProfileScreenView {
         });
 
 
-        frame.add(btnSave);
-        frame.add(btnEdit);
-        frame.add(profileIconLabel);
-        frame.add(showInfoPanel);
-        frame.add(editInfoPanel);
-    }
-
-    public void show(){
-        frame.setVisible(true);
+        add(btnSave);
+        add(btnEdit);
+        add(profileIconLabel);
+        add(showInfoPanel);
+        add(editInfoPanel);
     }
 
     public boolean isVisibleForScreen(){
-        return frame.isVisible();
+        return isVisible();
     }
 }

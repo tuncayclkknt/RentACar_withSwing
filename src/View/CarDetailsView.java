@@ -3,24 +3,21 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class CarDetailsView {
-
-    private final JFrame frame;
+public class CarDetailsView extends JFrame{
 
     public CarDetailsView() {
-        frame = new JFrame("Details");
-        frame.setResizable(false);
-        frame.setSize(400,800);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.white);
+        setResizable(false);
+        setSize(400,800);
+        setLayout(null);
+        getContentPane().setBackground(Color.white);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameWidth = frame.getWidth();
-        int frameHeight = frame.getHeight();
+        int frameWidth = getWidth();
+        int frameHeight = getHeight();
 
         int x = screenSize.width - frameWidth;
         int y = (screenSize.height - frameHeight - 50) / 2;
-        frame.setLocation(x, y);
+        setLocation(x, y);
 
         ImageIcon icon = IResizeImage.resizeImage("src/Assets/mercedes_c180amg_2018.jpg",360,200);
         JLabel photo = new JLabel(icon);
@@ -65,7 +62,7 @@ public class CarDetailsView {
             Object[] options = {"Accept","Deny"};
 
             int result = JOptionPane.showOptionDialog(
-                    frame,
+                    this,
                     message,
                     title,
                     JOptionPane.YES_NO_OPTION,
@@ -76,27 +73,23 @@ public class CarDetailsView {
             );
 
             if (result == JOptionPane.YES_OPTION)
-                JOptionPane.showMessageDialog(frame,"You get the car.","Result",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"You get the car.","Result",JOptionPane.INFORMATION_MESSAGE);
             else if (result == JOptionPane.NO_OPTION)
-                JOptionPane.showMessageDialog(frame,"Payment is canceled.","Result",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Payment is canceled.","Result",JOptionPane.WARNING_MESSAGE);
 
         });
 
-        frame.add(button);
-        frame.add(spinner);
-        frame.add(last);
-        frame.add(dailyPrice);
-        frame.add(year);
-        frame.add(carName);
-        frame.add(modelName);
-        frame.add(photo);
-    }
-
-    public void show(){
-        frame.setVisible(true);
+        add(button);
+        add(spinner);
+        add(last);
+        add(dailyPrice);
+        add(year);
+        add(carName);
+        add(modelName);
+        add(photo);
     }
 
     public boolean isVisibleForScreen(){
-        return frame.isVisible();
+        return isVisible();
     }
 }

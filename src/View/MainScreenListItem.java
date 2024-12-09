@@ -4,25 +4,30 @@ import Model.CarModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainScreenListItem {
+public class MainScreenListItem extends JPanel{
 
-    private final JButton button;
+    private JButton button;
     private final JLabel makeLabel;
     private final JLabel modelLabel;
     private final JLabel photoLabel;
     private final JLabel priceLabel;
-    private final JPanel panel;
 
     private CarDetailsView carDetailsView;
 
     //to put panels manually, top margin is 20 px
-    private static int yCoordinate = 20;
+    private static int yCoordinate = -90; //it is to solve a bug, I am not sure if there is another way.
     private static int counter = 0;
 
     public static int getCounter() {
         return counter;
     }
+
+    private static List<JPanel> items = new ArrayList<>();
 
     public MainScreenListItem(CarModel carModel) {
 
@@ -34,15 +39,14 @@ public class MainScreenListItem {
         makeLabel = new JLabel(carModel.getMake());
         modelLabel = new JLabel(carModel.getModel());
         priceLabel = new JLabel(carModel.getDailyPrice() + " TL");
-        panel = new JPanel();
 
-        panel.setLayout(null);
+        setLayout(null);
 
         //add a line border on every panel
-        panel.setBorder(new RoundedBorder(15));
+        setBorder(new RoundedBorder(15));
 
         //give the initial position to panel(yCoordinate)
-        panel.setBounds(25, yCoordinate, 650, 100);
+        setBounds(25, yCoordinate, 650, 100);
         button.setBounds(575, 25, 50, 50);
         button.setIcon(angleRight);
 
@@ -56,7 +60,7 @@ public class MainScreenListItem {
         priceLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
         photoLabel.setBounds(10,10,80,80);
-        panel.setBackground(Color.white);
+        setBackground(Color.white);
 
         /*
             increase the yCoordinate +80, ever panel has 70px height
@@ -72,15 +76,25 @@ public class MainScreenListItem {
                 carDetailsView = new CarDetailsView();
 
             if (!carDetailsView.isVisibleForScreen())
-                carDetailsView.show();
+                carDetailsView.setVisible(true);
 
         });
 
-        panel.add(photoLabel);
-        panel.add(priceLabel);
-        panel.add(button);
-        panel.add(makeLabel);
-        panel.add(modelLabel);
+        add(photoLabel);
+        add(priceLabel);
+        add(button);
+        add(makeLabel);
+        add(modelLabel);
+
+//        items.add(this);
+    }
+
+    public void addToList(){
+        items.add(this);
+    }
+
+    public void addMainListItemListener(ActionListener listener){
+        button.addActionListener(listener);
     }
 
     //I will probably need later
@@ -93,9 +107,7 @@ public class MainScreenListItem {
         return makeLabel;
     }
 
-    //return every item's panel view.
-    public JPanel getPanel() {
-        return panel;
+    public static List<JPanel> getItems() {
+        return items;
     }
-
 }

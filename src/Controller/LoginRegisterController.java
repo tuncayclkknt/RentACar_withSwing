@@ -2,6 +2,7 @@ package Controller;
 
 import Model.UserModel;
 import View.LoginRegisterView;
+import View.MainScreenListItem;
 import View.MainScreenView;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class LoginRegisterController {
     private LoginRegisterView loginRegisterView;
     private MainScreenView mainScreenView;
 
-    public LoginRegisterController(UserModel userModel, LoginRegisterView loginRegisterView) {
+    public LoginRegisterController(UserModel userModel, LoginRegisterView loginRegisterView, MainScreenView mainScreenView) {
         this.userModel = userModel;
         this.loginRegisterView = loginRegisterView;
 
@@ -21,8 +22,8 @@ public class LoginRegisterController {
 
             if (userModel.check(username,password)){
                 loginRegisterView.dispose();
-                mainScreenView = new MainScreenView();
-                mainScreenView.show();
+                mainScreenView.setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Invalid username or password.");
             }
@@ -44,6 +45,7 @@ public class LoginRegisterController {
                 JOptionPane.showMessageDialog(loginRegisterView, "Username already exists!");
             }
 
+            //Test
             System.out.println(userModel.getUsers());
         });
     }

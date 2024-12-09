@@ -4,17 +4,15 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class AdminPageView {
-    private final JFrame frame;
+public class AdminPageView extends JFrame{
 
     public AdminPageView() {
 
-        frame = new JFrame("Admin Page");
-        frame.setResizable(false);
-        frame.setSize(1400,800);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
-        frame.getContentPane().setBackground(Color.white);
+        setResizable(false);
+        setSize(1400,800);
+        setLocationRelativeTo(null);
+        setLayout(null);
+        getContentPane().setBackground(Color.white);
 
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(null);
@@ -203,14 +201,6 @@ public class AdminPageView {
         JScrollPane contentPanelScroll = new JScrollPane(contentPanel);
         contentPanelScroll.setBounds(0,0,1380,800);
 
-        frame.add(contentPanelScroll);
-    }
-
-    public void show(){
-        frame.setVisible(true);
-    }
-
-    public boolean isVisibleForScreen(){
-        return frame.isVisible();
+        add(contentPanelScroll);
     }
 }
