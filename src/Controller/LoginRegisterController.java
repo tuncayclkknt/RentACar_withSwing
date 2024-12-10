@@ -2,7 +2,6 @@ package Controller;
 
 import Model.UserModel;
 import View.LoginRegisterView;
-import View.MainScreenListItem;
 import View.MainScreenView;
 
 import javax.swing.*;

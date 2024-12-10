@@ -1,10 +1,5 @@
 package View;
 
-import Model.CarModel;
-import Model.Sedan;
-
-import javax.accessibility.AccessibleIcon;
-import javax.print.attribute.standard.JobName;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -22,10 +17,10 @@ public class MainScreenView extends JFrame{
     private final JToggleButton btnFilter;
     private final JToggleButton btnSort;
 
-    private ProfileScreenView profileScreenView;
+    private ProfileView profileView;
     private MyRentsView myRentsView;
-    private AdminPageView adminPageView;
-    private MainScreenListItem mainScreenListItem;
+    private AdminView adminView;
+    private MainListItemView mainListItemView;
 
     private JButton btnAdminPage;
     private JButton btnProfilePage;
@@ -53,12 +48,12 @@ public class MainScreenView extends JFrame{
 //                "src/Assets/mercedes-benz.png",
 //                "src/Assets/mercedes_c180amg_2018.jpg");
 //
-//        MainScreenListItem item = new MainScreenListItem(mercedes1);
+//        MainListItemView item = new MainListItemView(mercedes1);
 
         //this part needed for create scrollable panel, I found it after ~100 trying and
         //update -> I put this part after creating cars because of counter increment.
         carsCards.setPreferredSize(new Dimension(650,
-                MainScreenListItem.getCounter() * 110 + 30));
+                MainListItemView.getCounter() * 110 + 30 + 110));
         /* I will make the second part(590) dynamic, i found 590 like this;
                 every item(panel) has 100 px height and 10 px padding = 110,
                 then I have 7 items so 7 x 110 = 770,
@@ -74,7 +69,7 @@ public class MainScreenView extends JFrame{
         //add them in a panel
 //        carsCards.add(item);
 
-//        for (JPanel panel : mainScreenListItem.getItems()){
+//        for (JPanel panel : mainListItemView.getItems()){
 //            carsCards.add(panel);
 //        }
 
@@ -95,11 +90,11 @@ public class MainScreenView extends JFrame{
         btnAdminPage.setFont(new Font("Arial", Font.PLAIN, 18));
 
 //        btnAdminPage.addActionListener(e->{
-//             if (adminPageView == null)
-//                 adminPageView = new AdminPageView();
+//             if (adminView == null)
+//                 adminView = new AdminView();
 //
-//             if (!adminPageView.isVisibleForScreen())
-//                 adminPageView.setVisible(true);
+//             if (!adminView.isVisibleForScreen())
+//                 adminView.setVisible(true);
 //        });
 
         // Search Panel
@@ -259,11 +254,11 @@ public class MainScreenView extends JFrame{
 
 //        btnProfilePage.addActionListener(e -> {
 //
-//            if (profileScreenView == null)
-//                profileScreenView = new ProfileScreenView();
+//            if (profileView == null)
+//                profileView = new ProfileView();
 //
-//            if (!profileScreenView.isVisibleForScreen())
-//                profileScreenView.show();
+//            if (!profileView.isVisibleForScreen())
+//                profileView.show();
 //        });
 
 //        btnMyRents.addActionListener(e->{

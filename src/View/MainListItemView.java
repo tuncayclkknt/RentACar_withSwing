@@ -4,12 +4,11 @@ import Model.CarModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreenListItem extends JPanel{
+public class MainListItemView extends JPanel{
 
     private JButton button;
     private final JLabel makeLabel;
@@ -29,7 +28,7 @@ public class MainScreenListItem extends JPanel{
 
     private static List<JPanel> items = new ArrayList<>();
 
-    public MainScreenListItem(CarModel carModel) {
+    public MainListItemView(CarModel carModel) {
 
         ImageIcon angleRight = IResizeImage.resizeImage("src/Assets/angle-right.png",30,30);
         ImageIcon icon2 = IResizeImage.resizeImage(carModel.getTinyPhotoPath(),80,80);

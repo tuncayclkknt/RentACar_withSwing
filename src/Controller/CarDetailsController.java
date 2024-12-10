@@ -2,18 +2,16 @@ package Controller;
 
 import Model.CarModel;
 import View.CarDetailsView;
-import View.MainScreenListItem;
+import View.MainListItemView;
 import View.MainScreenView;
 
-import javax.swing.*;
-
 public class CarDetailsController {
-    private MainScreenListItem item;
+    private MainListItemView item;
     private CarModel carModel;
     private CarDetailsView carDetailsView;
     private MainScreenView mainScreenView;
 
-    public CarDetailsController(MainScreenListItem item, CarModel carModel,CarDetailsView carDetailsView,
+    public CarDetailsController(MainListItemView item, CarModel carModel, CarDetailsView carDetailsView,
                                 MainScreenView mainScreenView) {
         this.item = item;
         this.carModel = carModel;
@@ -21,12 +19,12 @@ public class CarDetailsController {
 
         for (CarModel car: CarModel.getCars()){
 
-            MainScreenListItem mainScreenListItem = new MainScreenListItem(car);
-            mainScreenListItem.addToList();
+            MainListItemView mainListItemView = new MainListItemView(car);
+            mainListItemView.addToList();
 
         }
 
-//        System.out.println("Size" + MainScreenListItem.getItems().size());
+//        System.out.println("Size" + MainListItemView.getItems().size());
 //
 //        for (JPanel items: MainScreenView.getCardItems()){
 //            mainScreenView.getCarsCards().add(items);

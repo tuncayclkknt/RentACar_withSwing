@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.CarModel;
 import Model.UserModel;
 import View.*;
 
@@ -9,26 +8,26 @@ import javax.swing.*;
 public class MainScreenController {
 
     private UserModel userModel;
-    private ProfileScreenView profileScreenView;
+    private ProfileView profileView;
     private MyRentsView myRentsView;
     private MainScreenView mainScreenView;
-    private AdminPageView adminPageView;
-    private MainScreenListItem mainScreenListItem;
+    private AdminView adminView;
+    private MainListItemView mainListItemView;
 
-    public MainScreenController(UserModel userModel, AdminPageView adminPageView, MainScreenView mainScreenView,
-    ProfileScreenView profileScreenView, MyRentsView myRentsView) {
+    public MainScreenController(UserModel userModel, AdminView adminView, MainScreenView mainScreenView,
+                                ProfileView profileView, MyRentsView myRentsView) {
         this.userModel = userModel;
         this.mainScreenView = mainScreenView;
-        this.adminPageView = adminPageView;
-        this.profileScreenView = profileScreenView;
+        this.adminView = adminView;
+        this.profileView = profileView;
         this.myRentsView = myRentsView;
 
         this.mainScreenView.addAdminPageListener(e-> {
-            adminPageView.setVisible(true);
+            adminView.setVisible(true);
         });
 
         this.mainScreenView.addProfilePageListener(e->{
-            profileScreenView.setVisible(true);
+            profileView.setVisible(true);
         });
 
         this.mainScreenView.addMyRentsPageListener(e->{
@@ -36,9 +35,9 @@ public class MainScreenController {
         });
 
         //test
-        System.out.println("Items size: " + MainScreenListItem.getItems().size());
+        System.out.println("Items size: " + MainListItemView.getItems().size());
 
-        for (JPanel listItem : MainScreenListItem.getItems()){
+        for (JPanel listItem : MainListItemView.getItems()){
             MainScreenView.getCardItems().add(listItem);
         }
 

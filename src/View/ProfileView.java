@@ -3,9 +3,9 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProfileScreenView extends JFrame {
+public class ProfileView extends JFrame {
 
-    public ProfileScreenView() {
+    public ProfileView() {
 
         setResizable(false);
         setSize(400,800);

@@ -4,9 +4,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class AdminPageView extends JFrame{
+public class AdminView extends JFrame{
 
-    public AdminPageView() {
+    public AdminView() {
 
         setResizable(false);
         setSize(1400,800);
