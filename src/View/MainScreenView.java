@@ -44,7 +44,7 @@ public class MainScreenView extends JFrame{
 
 
         //our items
-//        CarModel mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
+//        Car mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
 //                "src/Assets/mercedes-benz.png",
 //                "src/Assets/mercedes_c180amg_2018.jpg");
 //

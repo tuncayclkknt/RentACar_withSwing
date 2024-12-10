@@ -1,23 +1,23 @@
 package Controller;
 
-import Model.CarModel;
+import Model.Car;
 import View.CarDetailsView;
 import View.MainListItemView;
 import View.MainScreenView;
 
 public class CarDetailsController {
     private MainListItemView item;
-    private CarModel carModel;
+    private Car car;
     private CarDetailsView carDetailsView;
     private MainScreenView mainScreenView;
 
-    public CarDetailsController(MainListItemView item, CarModel carModel, CarDetailsView carDetailsView,
+    public CarDetailsController(MainListItemView item, Car carModel, CarDetailsView carDetailsView,
                                 MainScreenView mainScreenView) {
         this.item = item;
-        this.carModel = carModel;
+        this.car = carModel;
         this.carDetailsView = carDetailsView;
 
-        for (CarModel car: CarModel.getCars()){
+        for (Car car: Car.getCars()){
 
             MainListItemView mainListItemView = new MainListItemView(car);
             mainListItemView.addToList();

@@ -1,19 +1,19 @@
 package Model;
 
-import javax.swing.*;
 import java.util.Hashtable;
 
-public class UserModel {
+public class User {
     private String name;
     private String surname;
     private String username;
     private String password;
     private boolean isAdmin;
 
-    private Hashtable<String,String> users;
+    private Hashtable<String, User> users;
+    private User loggedInUser;
 
-    public UserModel(String name, String surname, String username,
-                     String password, boolean isAdmin) {
+    public User(String name, String surname, String username,
+                String password, boolean isAdmin) {
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -21,12 +21,12 @@ public class UserModel {
         this.isAdmin = isAdmin;
 
         users = new Hashtable<>();
-        users.put(username,password);
+        users.put(username,this);
     }
 
-    public boolean addUser(UserModel user){
+    public boolean addUser(User user){
         if (!users.containsKey(user.username)){
-            users.put(user.username,user.password);
+            users.put(user.username,user);
             return true;
         }
         else
@@ -34,7 +34,7 @@ public class UserModel {
     }
 
     public boolean check(String username, String password){
-        return users.containsKey(username) && users.get(username).equals(password);
+        return users.containsKey(username) && users.get(username).getPassword().equals(password);
     }
 
     //-----------------
@@ -79,7 +79,15 @@ public class UserModel {
         isAdmin = admin;
     }
 
-    public Hashtable<String, String> getUsers() {
+    public Hashtable<String, User> getUsers() {
         return users;
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 }

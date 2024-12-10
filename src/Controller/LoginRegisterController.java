@@ -1,28 +1,34 @@
 package Controller;
 
-import Model.UserModel;
+import Model.User;
 import View.LoginRegisterView;
 import View.MainScreenView;
 
 import javax.swing.*;
 
 public class LoginRegisterController {
-    private UserModel userModel;
+    private User user;
     private LoginRegisterView loginRegisterView;
     private MainScreenView mainScreenView;
 
-    public LoginRegisterController(UserModel userModel, LoginRegisterView loginRegisterView, MainScreenView mainScreenView) {
-        this.userModel = userModel;
+    public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainScreenView mainScreenView) {
+        this.user = user;
         this.loginRegisterView = loginRegisterView;
 
         this.loginRegisterView.addLoginListener(e -> {
             String username = loginRegisterView.getUsernameLogin();
             String password = loginRegisterView.getPasswordLogin();
 
-            if (userModel.check(username,password)){
+            if (user.check(username,password)){
+
+//                User.setLoginUser(user.getUsers().get(username));
+
+                user.setLoggedInUser(user.getUsers().get(username));
+
                 loginRegisterView.dispose();
                 mainScreenView.setVisible(true);
 
+                System.out.println(user.getLoggedInUser());
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Invalid username or password.");
             }
@@ -36,16 +42,16 @@ public class LoginRegisterController {
             String username = loginRegisterView.getUsernameRegister();
             String password = loginRegisterView.getPasswordRegister();
 
-            UserModel user = new UserModel(name,surname,username,password,false);
+            User newUser = new User(name,surname,username,password,false);
 
-            if (userModel.addUser(user)) {
+            if (user.addUser(newUser)) {
                 JOptionPane.showMessageDialog(loginRegisterView, "User registered successfully!");
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Username already exists!");
             }
 
             //Test
-            System.out.println(userModel.getUsers());
+            System.out.println(user.getUsers());
         });
     }
 }

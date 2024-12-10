@@ -1,10 +1,9 @@
 package View;
 
-import Model.CarModel;
+import Model.Car;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +27,16 @@ public class MainListItemView extends JPanel{
 
     private static List<JPanel> items = new ArrayList<>();
 
-    public MainListItemView(CarModel carModel) {
+    public MainListItemView(Car car) {
 
         ImageIcon angleRight = IResizeImage.resizeImage("src/Assets/angle-right.png",30,30);
-        ImageIcon icon2 = IResizeImage.resizeImage(carModel.getTinyPhotoPath(),80,80);
+        ImageIcon icon2 = IResizeImage.resizeImage(car.getTinyPhotoPath(),80,80);
 
         photoLabel = new JLabel(icon2);
         button = new JButton();
-        makeLabel = new JLabel(carModel.getMake());
-        modelLabel = new JLabel(carModel.getModel());
-        priceLabel = new JLabel(carModel.getDailyPrice() + " TL");
+        makeLabel = new JLabel(car.getMake());
+        modelLabel = new JLabel(car.getModel());
+        priceLabel = new JLabel(car.getDailyPrice() + " TL");
 
         setLayout(null);
 
@@ -46,7 +45,7 @@ public class MainListItemView extends JPanel{
 
         //give the initial position to panel(yCoordinate)
         setBounds(25, yCoordinate, 650, 100);
-        button.setBounds(575, 25, 50, 50);
+        button.setBounds(575, 25, 40, 40);
         button.setIcon(angleRight);
 
         makeLabel.setBounds(115, 20, 130, 30);

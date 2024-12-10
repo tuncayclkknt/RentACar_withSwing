@@ -6,6 +6,9 @@ import java.awt.*;
 
 public class AdminView extends JFrame{
 
+    private DefaultTableModel carTableModel;
+    private DefaultTableModel userTableModel;
+
     public AdminView() {
 
         setResizable(false);
@@ -24,8 +27,8 @@ public class AdminView extends JFrame{
         contentPanel.add(carsLabel);
 
         String[] carColumns = {"Make", "Model", "Year", "Price(daily)", "Logo", "Photo"};
-        DefaultTableModel model = new DefaultTableModel(carColumns,0);
-        JTable carTable = new JTable(model);
+        carTableModel = new DefaultTableModel(carColumns,0);
+        JTable carTable = new JTable(carTableModel);
         JScrollPane carTableScroll = new JScrollPane(carTable);
         carTableScroll.setBounds(20,60,660,300);
         contentPanel.add(carTableScroll);
@@ -113,9 +116,9 @@ public class AdminView extends JFrame{
         userLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         contentPanel.add(userLabel);
 
-        String[] userColumns = {"Need", "Need", "Need"};
-        DefaultTableModel model2 = new DefaultTableModel(userColumns,0);
-        JTable userTable = new JTable(model2);
+        String[] userColumns = {"Name", "Surname", "Username","Password","isAdmin"};
+        userTableModel = new DefaultTableModel(userColumns,0);
+        JTable userTable = new JTable(userTableModel);
         JScrollPane userTableScroll = new JScrollPane(userTable);
         userTableScroll.setBounds(20,440,660,300);
         contentPanel.add(userTableScroll);

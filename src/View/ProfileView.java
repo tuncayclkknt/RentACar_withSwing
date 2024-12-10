@@ -5,6 +5,11 @@ import java.awt.*;
 
 public class ProfileView extends JFrame {
 
+    private JLabel nameLabel;
+    private JLabel surnameLabel;
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
+
     public ProfileView() {
 
         setResizable(false);
@@ -32,25 +37,25 @@ public class ProfileView extends JFrame {
         showInfoPanel.setBorder(new RoundedBorder(15));
         showInfoPanel.setBackground(new Color(255, 221, 221,50));
 
-        JLabel nameLabel = new JLabel("   Name       : Tuncay");
+        nameLabel = new JLabel();
         nameLabel.setBounds(30,50,240,40);
         nameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         nameLabel.setBorder(new RoundedBorder(15));
         showInfoPanel.add(nameLabel);
 
-        JLabel surnameLabel = new JLabel("   Surname  : Çelikkanat");
+        surnameLabel = new JLabel();
         surnameLabel.setBounds(30,110,240,40);
         surnameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         surnameLabel.setBorder(new RoundedBorder(15));
         showInfoPanel.add(surnameLabel);
 
-        JLabel usernameLabel = new JLabel("   Username: tuncayoski");
+        usernameLabel = new JLabel();
         usernameLabel.setBounds(30,170,240,40);
         usernameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         usernameLabel.setBorder(new RoundedBorder(15));
         showInfoPanel.add(usernameLabel);
 
-        JLabel passwordLabel = new JLabel("   Password : 1234");
+        passwordLabel = new JLabel();
         passwordLabel.setBounds(30,230,240,40);
         passwordLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         passwordLabel.setBorder(new RoundedBorder(15));
@@ -140,7 +145,23 @@ public class ProfileView extends JFrame {
         add(editInfoPanel);
     }
 
-    public boolean isVisibleForScreen(){
-        return isVisible();
+//    public boolean isVisibleForScreen(){
+//        return isVisible();
+//    }
+
+    public JLabel getNameLabel() {
+        return nameLabel;
+    }
+
+    public JLabel getSurnameLabel() {
+        return surnameLabel;
+    }
+
+    public JLabel getUsernameLabel() {
+        return usernameLabel;
+    }
+
+    public JLabel getPasswordLabel() {
+        return passwordLabel;
     }
 }

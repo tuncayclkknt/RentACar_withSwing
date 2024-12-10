@@ -3,7 +3,8 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarModel {
+public class Car {
+    private int carId;
     private String make;
     private String model;
     private int year;
@@ -11,24 +12,36 @@ public class CarModel {
     private String tinyPhotoPath;
     private String bigPhotoPath;
 
-    private static List<CarModel> cars = new ArrayList<>();
+    private static int nextID = 1;
+    private int userID;
 
-    public CarModel(String make, String model, int year, double dailyPrice,
-                    String tinyPhotoPath, String bigPhotoPath) {
+    private static List<Car> cars = new ArrayList<>();
 
+    public Car(String make, String model, int year, double dailyPrice,
+               String tinyPhotoPath, String bigPhotoPath) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.dailyPrice = dailyPrice;
         this.tinyPhotoPath = tinyPhotoPath;
         this.bigPhotoPath = bigPhotoPath;
+        this.carId = nextID++;
 
         cars.add(this);
     }
 //
-//    public void addCar(CarModel car){
+//    public void addCar(Car car){
 //        cars.add(car);
 //    }
+
+
+    public int getCarId() {
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
+    }
 
     public String getMake() {
         return make;
@@ -78,7 +91,7 @@ public class CarModel {
         this.dailyPrice = dailyPrice;
     }
 
-    public static List<CarModel> getCars() {
+    public static List<Car> getCars() {
         return cars;
     }
 }

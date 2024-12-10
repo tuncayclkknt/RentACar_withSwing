@@ -212,4 +212,5 @@ public class LoginRegisterView extends JFrame implements IResizeImage{
     public String getPasswordRegister(){
         return new String(passwordField2.getPassword());
     }
+
 }

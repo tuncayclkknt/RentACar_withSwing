@@ -1,22 +1,22 @@
 package Controller;
 
-import Model.UserModel;
+import Model.User;
 import View.*;
 
 import javax.swing.*;
 
 public class MainScreenController {
 
-    private UserModel userModel;
+    private User user;
     private ProfileView profileView;
     private MyRentsView myRentsView;
     private MainScreenView mainScreenView;
     private AdminView adminView;
     private MainListItemView mainListItemView;
 
-    public MainScreenController(UserModel userModel, AdminView adminView, MainScreenView mainScreenView,
+    public MainScreenController(User user, AdminView adminView, MainScreenView mainScreenView,
                                 ProfileView profileView, MyRentsView myRentsView) {
-        this.userModel = userModel;
+        this.user = user;
         this.mainScreenView = mainScreenView;
         this.adminView = adminView;
         this.profileView = profileView;
