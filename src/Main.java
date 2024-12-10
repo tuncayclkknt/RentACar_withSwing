@@ -16,7 +16,7 @@ public class Main {
                 "src/Assets/mercedes-benz.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
-        CarModel mercedes2 = new Sedan("Merco","C 180 AMG",2018,1200,
+        CarModel mercedes2 = new Sedan("Merco1","C 180 AMG",2018,1200,
                 "src/Assets/mercedes-benz.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
@@ -33,7 +33,7 @@ public class Main {
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
 
-        MainListItemView mainListItemView = new MainListItemView(mercedes2);
+        MainListItemView mainListItemView = new MainListItemView(mercedes1);
         LoginRegisterView loginRegisterView = new LoginRegisterView();
         AdminView adminView = new AdminView();
         ProfileView profileView = new ProfileView();

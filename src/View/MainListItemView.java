@@ -19,7 +19,7 @@ public class MainListItemView extends JPanel{
     private CarDetailsView carDetailsView;
 
     //to put panels manually, top margin is 20 px
-    private static int yCoordinate = -90; //it is to solve a bug, I am not sure if there is another way.
+    private static int yCoordinate = 20; //there still is a bug //I solved, but I am not sure how I did??
     private static int counter = 0;
 
     public static int getCounter() {
@@ -67,9 +67,6 @@ public class MainListItemView extends JPanel{
                 it is the needed gap for every panel.
         */
 
-        yCoordinate += 110;
-        counter++;
-
         button.addActionListener(e->{
             if (carDetailsView == null)
                 carDetailsView = new CarDetailsView();
@@ -85,16 +82,19 @@ public class MainListItemView extends JPanel{
         add(makeLabel);
         add(modelLabel);
 
-//        items.add(this);
+//        items.add(this); // I added this part and the bug was gone to hell. WTF java??
     }
 
+    //Finally, I fixed it until the end B-)
     public void addToList(){
+        yCoordinate += 110;
+        counter++;
         items.add(this);
     }
 
-    public void addMainListItemListener(ActionListener listener){
-        button.addActionListener(listener);
-    }
+//    public void addMainListItemListener(ActionListener listener){
+//        button.addActionListener(listener);
+//    }
 
     //I will probably need later
     public JButton getButton() {
