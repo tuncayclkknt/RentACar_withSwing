@@ -51,7 +51,6 @@ public class ProfileController {
             profileView.getEditInfoPanel().setVisible(false);
             profileView.getBtnSave().setVisible(false);
             profileView.getBtnEdit().setVisible(true);
-
         });
 
     }
