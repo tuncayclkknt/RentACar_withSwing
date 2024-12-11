@@ -10,8 +10,10 @@ public class LoginRegisterController {
     private User user;
     private LoginRegisterView loginRegisterView;
     private MainScreenView mainScreenView;
+    private ProfileController controller;
 
-    public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainScreenView mainScreenView) {
+    public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainScreenView mainScreenView,
+                                   ProfileController controller) {
         this.user = user;
         this.loginRegisterView = loginRegisterView;
 
@@ -23,12 +25,13 @@ public class LoginRegisterController {
 
 //                User.setLoginUser(user.getUsers().get(username));
 
-                user.setLoggedInUser(user.getUsers().get(username));
-
                 loginRegisterView.dispose();
                 mainScreenView.setVisible(true);
 
-                System.out.println(user.getLoggedInUser());
+                User.setLoggedInUser(user.getUsers().get(username));
+                System.out.println(User.getLoggedInUser());
+                controller.setLabels();
+
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Invalid username or password.");
             }

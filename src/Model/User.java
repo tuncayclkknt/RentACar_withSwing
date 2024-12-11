@@ -10,7 +10,8 @@ public class User {
     private boolean isAdmin;
 
     private Hashtable<String, User> users;
-    private User loggedInUser;
+
+    private static User loggedInUser;
 
     public User(String name, String surname, String username,
                 String password, boolean isAdmin) {
@@ -22,6 +23,7 @@ public class User {
 
         users = new Hashtable<>();
         users.put(username,this);
+        loggedInUser = this;
     }
 
     public boolean addUser(User user){
@@ -83,11 +85,11 @@ public class User {
         return users;
     }
 
-    public User getLoggedInUser() {
+    public static User getLoggedInUser() {
         return loggedInUser;
     }
 
-    public void setLoggedInUser(User loggedInUser) {
-        this.loggedInUser = loggedInUser;
+    public static void setLoggedInUser(User user) {
+        loggedInUser = user;
     }
 }

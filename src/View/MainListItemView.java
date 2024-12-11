@@ -25,7 +25,7 @@ public class MainListItemView extends JPanel{
         return counter;
     }
 
-    private static List<JPanel> items = new ArrayList<>();
+    private static List<JPanel> mainListItems = new ArrayList<>();
 
     public MainListItemView(Car car) {
 
@@ -88,7 +88,7 @@ public class MainListItemView extends JPanel{
     public void addToList(){
         yCoordinate += 110;
         counter++;
-        items.add(this);
+        mainListItems.add(this);
     }
 
 //    public void addMainListItemListener(ActionListener listener){
@@ -105,7 +105,7 @@ public class MainListItemView extends JPanel{
         return makeLabel;
     }
 
-    public static List<JPanel> getItems() {
-        return items;
+    public static List<JPanel> getMainListItems() {
+        return mainListItems;
     }
 }

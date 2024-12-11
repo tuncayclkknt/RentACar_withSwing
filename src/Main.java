@@ -29,29 +29,27 @@ public class Main {
                 "src/Assets/mercedes-benz.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
-
-        MainListItemView mainListItemView = new MainListItemView(mercedes1);
         LoginRegisterView loginRegisterView = new LoginRegisterView();
+        MainListItemView mainListItemView = new MainListItemView(mercedes1);
         ProfileView profileView = new ProfileView();
+        profileView.init();
         AdminView adminView = new AdminView();
         MyRentsView myRentsView = new MyRentsView();
         CarDetailsView carDetailsView = new CarDetailsView();
         MainScreenView mainScreenView = new MainScreenView();
 
-
-        new LoginRegisterController(u1,loginRegisterView,mainScreenView);
+        new LoginRegisterController(u1,loginRegisterView,mainScreenView,new ProfileController(loginRegisterView,profileView));
         new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
-        new ProfileController(loginRegisterView,profileView,u1);
         new MainScreenController(u1, adminView,mainScreenView, profileView,myRentsView);
         new MainScreenListItemsController(mainScreenView);
 
         loginRegisterView.setVisible(true);
 
         System.out.println(Car.getCars());
-        System.out.println(MainListItemView.getItems());
-        System.out.println("Items size: " + MainListItemView.getItems().size());
+        System.out.println(MainListItemView.getMainListItems());
+        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
         System.out.println("Items size: " + MainScreenView.getCardItems().size() + MainScreenView.getCardItems());
         System.out.println(mainScreenView.getCarsCards());
-
+        System.out.println(User.getLoggedInUser());
     }
 }

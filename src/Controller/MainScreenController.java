@@ -35,9 +35,9 @@ public class MainScreenController {
         });
 
         //test
-        System.out.println("Items size: " + MainListItemView.getItems().size());
+        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
 
-        for (JPanel listItem : MainListItemView.getItems()){
+        for (JPanel listItem : MainListItemView.getMainListItems()){
             MainScreenView.getCardItems().add(listItem);
         }
 

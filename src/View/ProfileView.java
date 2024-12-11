@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ProfileView extends JFrame {
 
@@ -9,6 +10,17 @@ public class ProfileView extends JFrame {
     private JLabel surnameLabel;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
+
+    private JTextField nameField;
+    private JTextField surnameField;
+    private JTextField usernameField;
+    private JTextField passwordField;
+
+    private JButton btnEdit;
+    private JButton btnSave;
+
+    private JPanel showInfoPanel;
+    private JPanel editInfoPanel;
 
     public ProfileView() {
 
@@ -31,7 +43,7 @@ public class ProfileView extends JFrame {
         profileIconLabel.setBounds(150,50,100,100);
 
         //show panel
-        JPanel showInfoPanel = new JPanel();
+        showInfoPanel = new JPanel();
         showInfoPanel.setLayout(null);
         showInfoPanel.setBounds(50,220,300,350);
         showInfoPanel.setBorder(new RoundedBorder(15));
@@ -63,7 +75,7 @@ public class ProfileView extends JFrame {
 
 
         //edit panel
-        JPanel editInfoPanel = new JPanel();
+        editInfoPanel = new JPanel();
         editInfoPanel.setLayout(null);
         editInfoPanel.setBounds(50,220,300,350);
         editInfoPanel.setBorder(new RoundedBorder(15));
@@ -76,7 +88,7 @@ public class ProfileView extends JFrame {
         nameLabel2.setBorder(new RoundedBorder(15));
         editInfoPanel.add(nameLabel2);
 
-        JTextField nameField = new JTextField();
+        nameField = new JTextField();
         nameField.setFont(new Font("Arial", Font.PLAIN, 18));
         nameField.setBounds(140,55,120,30);
         editInfoPanel.add(nameField);
@@ -87,7 +99,7 @@ public class ProfileView extends JFrame {
         surnameLabel2.setBorder(new RoundedBorder(15));
         editInfoPanel.add(surnameLabel2);
 
-        JTextField surnameField = new JTextField();
+        surnameField = new JTextField();
         surnameField.setFont(new Font("Arial", Font.PLAIN, 18));
         surnameField.setBounds(140,115,120,30);
         editInfoPanel.add(surnameField);
@@ -98,7 +110,7 @@ public class ProfileView extends JFrame {
         usernameLabel2.setBorder(new RoundedBorder(15));
         editInfoPanel.add(usernameLabel2);
 
-        JTextField usernameField = new JTextField();
+        usernameField = new JTextField();
         usernameField.setFont(new Font("Arial", Font.PLAIN, 18));
         usernameField.setBounds(140,175,120,30);
         editInfoPanel.add(usernameField);
@@ -109,40 +121,47 @@ public class ProfileView extends JFrame {
         passwordLabel2.setBorder(new RoundedBorder(15));
         editInfoPanel.add(passwordLabel2);
 
-        JTextField passwordField = new JTextField();
+        passwordField = new JTextField();
         passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
         passwordField.setBounds(140,235,120,30);
         editInfoPanel.add(passwordField);
 
-        JButton btnEdit = new JButton("Edit");
+        btnEdit = new JButton("Edit");
         btnEdit.setFont(new Font("Arial", Font.PLAIN, 18));
         btnEdit.setBounds(250,580,100,30);
 
-        JButton btnSave = new JButton("Save");
+        btnSave = new JButton("Save");
         btnSave.setFont(new Font("Arial", Font.PLAIN, 18));
         btnSave.setBounds(250,580,100,30);
         btnSave.setVisible(false);
 
-        btnEdit.addActionListener(e->{
-            showInfoPanel.setVisible(false);
-            editInfoPanel.setVisible(true);
-            btnSave.setVisible(true);
-            btnEdit.setVisible(false);
-        });
-
-        btnSave.addActionListener(e->{
-            showInfoPanel.setVisible(true);
-            editInfoPanel.setVisible(false);
-            btnSave.setVisible(false);
-            btnEdit.setVisible(true);
-        });
-
+//        btnEdit.addActionListener(e->{
+//            showInfoPanel.setVisible(false);
+//            editInfoPanel.setVisible(true);
+//            btnSave.setVisible(true);
+//            btnEdit.setVisible(false);
+//        });
+//
+//        btnSave.addActionListener(e->{
+//            showInfoPanel.setVisible(true);
+//            editInfoPanel.setVisible(false);
+//            btnSave.setVisible(false);
+//            btnEdit.setVisible(true);
+//        });
 
         add(btnSave);
         add(btnEdit);
         add(profileIconLabel);
         add(showInfoPanel);
         add(editInfoPanel);
+    }
+
+    public void addEditListener(ActionListener listener){
+        btnEdit.addActionListener(listener);
+    }
+
+    public void addSaveListener(ActionListener listener){
+        btnSave.addActionListener(listener);
     }
 
 //    public boolean isVisibleForScreen(){
@@ -163,5 +182,37 @@ public class ProfileView extends JFrame {
 
     public JLabel getPasswordLabel() {
         return passwordLabel;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JTextField getSurnameField() {
+        return surnameField;
+    }
+
+    public JTextField getUsernameField() {
+        return usernameField;
+    }
+
+    public JTextField getPasswordField() {
+        return passwordField;
+    }
+
+    public JPanel getShowInfoPanel() {
+        return showInfoPanel;
+    }
+
+    public JPanel getEditInfoPanel() {
+        return editInfoPanel;
+    }
+
+    public JButton getBtnEdit() {
+        return btnEdit;
+    }
+
+    public JButton getBtnSave() {
+        return btnSave;
     }
 }

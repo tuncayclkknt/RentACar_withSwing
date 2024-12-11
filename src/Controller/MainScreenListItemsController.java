@@ -33,7 +33,7 @@ public class MainScreenListItemsController {
                 you can make dynamic using this way...
          */
 
-        System.out.println("Size" + MainListItemView.getItems().size());
+        System.out.println("Size" + MainListItemView.getMainListItems().size());
 
         for (JPanel items: MainScreenView.getCardItems()){
             mainScreenView.getCarsCards().add(items);
