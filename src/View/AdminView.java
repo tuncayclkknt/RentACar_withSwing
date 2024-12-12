@@ -3,11 +3,32 @@ package View;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class AdminView extends JFrame{
 
     private DefaultTableModel carTableModel;
     private DefaultTableModel userTableModel;
+
+    private JTextField makeTextField;
+    private JTextField modelTextField;
+    private JTextField yearTextField;
+    private JTextField priceTextField;
+    private JTextField logoTextField;
+    private JTextField photoTextField;
+
+    private JTextField nameTextField;
+    private JTextField surnameTextField;
+    private JTextField usernameTextField;
+    private JTextField passwordTextField;
+    private JTextField isAdminTextField;
+
+    private JButton btnAddCar;
+    private JButton btnUpdateCar;
+    private JButton btnDeleteCar;
+    private JButton btnAddUser;
+    private JButton btnUpdateUser;
+    private JButton btnDeleteUser;
 
     public AdminView() {
 
@@ -30,12 +51,12 @@ public class AdminView extends JFrame{
         carTableModel = new DefaultTableModel(carColumns,0);
         JTable carTable = new JTable(carTableModel);
         JScrollPane carTableScroll = new JScrollPane(carTable);
-        carTableScroll.setBounds(20,60,660,300);
+        carTableScroll.setBounds(20,60,660,350);
         contentPanel.add(carTableScroll);
 
         JPanel carsActionPanel = new JPanel();
         carsActionPanel.setLayout(null);
-        carsActionPanel.setBounds(710,60,640,300);
+        carsActionPanel.setBounds(710,60,640,350);
         carsActionPanel.setBorder(new RoundedBorder(15));
         contentPanel.add(carsActionPanel);
 
@@ -44,7 +65,7 @@ public class AdminView extends JFrame{
         makeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         carsActionPanel.add(makeLabel);
 
-        JTextField makeTextField = new JTextField();
+        makeTextField = new JTextField();
         makeTextField.setBounds(155,30,250,40);
         makeTextField.setFont(new Font("Arial", Font.PLAIN, 18));
         carsActionPanel.add(makeTextField);
@@ -54,7 +75,7 @@ public class AdminView extends JFrame{
         modelLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         carsActionPanel.add(modelLabel);
 
-        JTextField modelTextField = new JTextField();
+        modelTextField = new JTextField();
         modelTextField.setBounds(155,80,250,40);
         modelTextField.setFont(new Font("Arial", Font.PLAIN, 18));
         carsActionPanel.add(modelTextField);
@@ -64,46 +85,56 @@ public class AdminView extends JFrame{
         yearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         carsActionPanel.add(yearLabel);
 
-        JTextField yearTextField = new JTextField();
+        yearTextField = new JTextField();
         yearTextField.setBounds(155,130,250,40);
         yearTextField.setFont(new Font("Arial", Font.PLAIN, 18));
         carsActionPanel.add(yearTextField);
 
+        JLabel priceLabel = new JLabel("Daily Price:");
+        priceLabel.setBounds(35,185,130,30);
+        priceLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        carsActionPanel.add(priceLabel);
+
+        priceTextField = new JTextField();
+        priceTextField.setBounds(155,180,250,40);
+        priceTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        carsActionPanel.add(priceTextField);
+
         JLabel logoLabel = new JLabel("Logo Path:");
-        logoLabel.setBounds(35,185,130,30);
+        logoLabel.setBounds(35,235,130,30);
         logoLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         carsActionPanel.add(logoLabel);
 
-        JTextField logoTextField = new JTextField();
-        logoTextField.setBounds(155,180,250,40);
+        logoTextField = new JTextField();
+        logoTextField.setBounds(155,230,250,40);
         logoTextField.setFont(new Font("Arial", Font.PLAIN, 18));
         carsActionPanel.add(logoTextField);
 
         JLabel photoLabel = new JLabel("Photo Path:");
-        photoLabel.setBounds(35,235,130,30);
+        photoLabel.setBounds(35,285,130,30);
         photoLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         carsActionPanel.add(photoLabel);
 
-        JTextField photoTextField = new JTextField();
-        photoTextField.setBounds(155,230,250,40);
+        photoTextField = new JTextField();
+        photoTextField.setBounds(155,280,250,40);
         photoTextField.setFont(new Font("Arial", Font.PLAIN, 18));
         carsActionPanel.add(photoTextField);
 
-        JButton btnAddCar = new JButton("ADD");
+        btnAddCar = new JButton("ADD");
         btnAddCar.setBounds(455,80,130,40);
         btnAddCar.setFont(new Font("Arial", Font.PLAIN, 18));
 //        btnAddCar.setBackground(new Color(53, 151, 0,255));
 //        btnAddCar.setForeground(new Color(255, 255, 255,255));
         carsActionPanel.add(btnAddCar);
 
-        JButton btnUpdateCar = new JButton("UPDATE");
+        btnUpdateCar = new JButton("UPDATE");
         btnUpdateCar.setBounds(455,130,130,40);
         btnUpdateCar.setFont(new Font("Arial", Font.PLAIN, 18));
 //        btnUpdateCar.setBackground(new Color(0, 56, 255,255));
 //        btnUpdateCar.setForeground(new Color(255, 255, 255,255));
         carsActionPanel.add(btnUpdateCar);
 
-        JButton btnDeleteCar = new JButton("DELETE");
+        btnDeleteCar = new JButton("DELETE");
         btnDeleteCar.setBounds(455,180,130,40);
         btnDeleteCar.setFont(new Font("Arial", Font.PLAIN, 18));
 //        btnDeleteCar.setBackground(new Color(255, 0, 0,255));
@@ -112,7 +143,7 @@ public class AdminView extends JFrame{
 
         //Users
         JLabel userLabel = new JLabel("Users");
-        userLabel.setBounds(20,400,130,30);
+        userLabel.setBounds(20,450,130,30);
         userLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         contentPanel.add(userLabel);
 
@@ -120,90 +151,165 @@ public class AdminView extends JFrame{
         userTableModel = new DefaultTableModel(userColumns,0);
         JTable userTable = new JTable(userTableModel);
         JScrollPane userTableScroll = new JScrollPane(userTable);
-        userTableScroll.setBounds(20,440,660,300);
+        userTableScroll.setBounds(20,490,660,300);
         contentPanel.add(userTableScroll);
 
         JPanel usersActionPanel = new JPanel();
         usersActionPanel.setLayout(null);
-        usersActionPanel.setBounds(710,440,640,300);
+        usersActionPanel.setBounds(710,490,640,300);
         usersActionPanel.setBorder(new RoundedBorder(15));
         contentPanel.add(usersActionPanel);
 
-        JLabel needLabel = new JLabel("Need:");
-        needLabel.setBounds(35,35,130,30);
-        needLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        usersActionPanel.add(needLabel);
+        JLabel nameLabel = new JLabel("Name:");
+        nameLabel.setBounds(35,35,130,30);
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        usersActionPanel.add(nameLabel);
 
-        JTextField needTextField = new JTextField();
-        needTextField.setBounds(155,30,250,40);
-        needTextField.setFont(new Font("Arial", Font.PLAIN, 18));
-        usersActionPanel.add(needTextField);
+        nameTextField = new JTextField();
+        nameTextField.setBounds(155,30,250,40);
+        nameTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        usersActionPanel.add(nameTextField);
 
-        JLabel needLabel2 = new JLabel("Need:");
-        needLabel2.setBounds(35,85,130,30);
-        needLabel2.setFont(new Font("Arial", Font.PLAIN, 20));
-        usersActionPanel.add(needLabel2);
+        JLabel surnameLabel = new JLabel("Surname:");
+        surnameLabel.setBounds(35,85,130,30);
+        surnameLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        usersActionPanel.add(surnameLabel);
 
-        JTextField needTextField2 = new JTextField();
-        needTextField2.setBounds(155,80,250,40);
-        needTextField2.setFont(new Font("Arial", Font.PLAIN, 18));
-        usersActionPanel.add(needTextField2);
+        surnameTextField = new JTextField();
+        surnameTextField.setBounds(155,80,250,40);
+        surnameTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        usersActionPanel.add(surnameTextField);
 
-//        JLabel yearLabel = new JLabel("Year:");
-//        yearLabel.setBounds(35,135,130,30);
-//        yearLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-//        usersActionPanel.add(yearLabel);
-//
-//        JTextField yearTextField = new JTextField();
-//        yearTextField.setBounds(155,130,250,40);
-//        yearTextField.setFont(new Font("Arial", Font.PLAIN, 18));
-//        usersActionPanel.add(yearTextField);
-//
-//        JLabel logoLabel = new JLabel("Logo Path:");
-//        logoLabel.setBounds(35,185,130,30);
-//        logoLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-//        usersActionPanel.add(logoLabel);
-//
-//        JTextField logoTextField = new JTextField();
-//        logoTextField.setBounds(155,180,250,40);
-//        logoTextField.setFont(new Font("Arial", Font.PLAIN, 18));
-//        usersActionPanel.add(logoTextField);
-//
-//        JLabel photoLabel = new JLabel("Photo Path:");
-//        photoLabel.setBounds(35,235,130,30);
-//        photoLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-//        usersActionPanel.add(photoLabel);
-//
-//        JTextField photoTextField = new JTextField();
-//        photoTextField.setBounds(155,230,250,40);
-//        photoTextField.setFont(new Font("Arial", Font.PLAIN, 18));
-//        usersActionPanel.add(photoTextField);
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameLabel.setBounds(35,135,130,30);
+        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        usersActionPanel.add(usernameLabel);
 
-        JButton btnAddUser = new JButton("ADD");
+        usernameTextField = new JTextField();
+        usernameTextField.setBounds(155,130,250,40);
+        usernameTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        usersActionPanel.add(usernameTextField);
+//
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordLabel.setBounds(35,185,130,30);
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        usersActionPanel.add(passwordLabel);
+
+        passwordTextField = new JTextField();
+        passwordTextField.setBounds(155,180,250,40);
+        passwordTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        usersActionPanel.add(passwordTextField);
+//
+        JLabel isAdminLabel = new JLabel("Is Admin:");
+        isAdminLabel.setBounds(35,235,130,30);
+        isAdminLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        usersActionPanel.add(isAdminLabel);
+
+        isAdminTextField = new JTextField();
+        isAdminTextField.setBounds(155,230,250,40);
+        isAdminTextField.setFont(new Font("Arial", Font.PLAIN, 18));
+        usersActionPanel.add(isAdminTextField);
+
+        btnAddUser = new JButton("ADD");
         btnAddUser.setBounds(455,80,130,40);
         btnAddUser.setFont(new Font("Arial", Font.PLAIN, 18));
 //        btnAddUser.setBackground(new Color(53, 151, 0,255));
 //        btnAddUser.setForeground(new Color(255, 255, 255,255));
         usersActionPanel.add(btnAddUser);
 
-        JButton btnUpdateUser = new JButton("UPDATE");
+        btnUpdateUser = new JButton("UPDATE");
         btnUpdateUser.setBounds(455,130,130,40);
         btnUpdateUser.setFont(new Font("Arial", Font.PLAIN, 18));
 //        btnUpdateUser.setBackground(new Color(0, 56, 255,255));
 //        btnUpdateUser.setForeground(new Color(255, 255, 255,255));
         usersActionPanel.add(btnUpdateUser);
 
-        JButton btnDeleteUser = new JButton("DELETE");
+        btnDeleteUser = new JButton("DELETE");
         btnDeleteUser.setBounds(455,180,130,40);
         btnDeleteUser.setFont(new Font("Arial", Font.PLAIN, 18));
 //        btnDeleteUser.setBackground(new Color(255, 0, 0,255));
 //        btnDeleteUser.setForeground(new Color(255, 255, 255,255));
         usersActionPanel.add(btnDeleteUser);
 
-
         JScrollPane contentPanelScroll = new JScrollPane(contentPanel);
         contentPanelScroll.setBounds(0,0,1380,800);
 
         add(contentPanelScroll);
+    }
+
+    public void addBtnAddCarListener(ActionListener listener){
+        btnAddCar.addActionListener(listener);
+    }
+
+    public void addBtnUpdateCarListener(ActionListener listener){
+        btnUpdateCar.addActionListener(listener);
+    }
+
+    public void addBtnDeleteCarListener(ActionListener listener){
+        btnDeleteCar.addActionListener(listener);
+    }
+    public void addBtnAddUserListener(ActionListener listener){
+        btnAddUser.addActionListener(listener);
+    }
+
+    public void addBtnUpdateUserListener(ActionListener listener){
+        btnUpdateUser.addActionListener(listener);
+    }
+
+    public void addBtnDeleteUserListener(ActionListener listener){
+        btnDeleteUser.addActionListener(listener);
+    }
+
+
+    public DefaultTableModel getUserTableModel() {
+        return userTableModel;
+    }
+
+    public DefaultTableModel getCarTableModel() {
+        return carTableModel;
+    }
+
+    public JTextField getIsAdminTextField() {
+        return isAdminTextField;
+    }
+
+    public JTextField getPasswordTextField() {
+        return passwordTextField;
+    }
+
+    public JTextField getUsernameTextField() {
+        return usernameTextField;
+    }
+
+    public JTextField getSurnameTextField() {
+        return surnameTextField;
+    }
+
+    public JTextField getNameTextField() {
+        return nameTextField;
+    }
+
+    public JTextField getPhotoTextField() {
+        return photoTextField;
+    }
+
+    public JTextField getModelTextField() {
+        return modelTextField;
+    }
+
+    public JTextField getMakeTextField() {
+        return makeTextField;
+    }
+
+    public JTextField getLogoTextField() {
+        return logoTextField;
+    }
+
+    public JTextField getYearTextField() {
+        return yearTextField;
+    }
+
+    public JTextField getPriceTextField() {
+        return priceTextField;
     }
 }

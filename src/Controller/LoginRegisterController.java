@@ -11,9 +11,10 @@ public class LoginRegisterController {
     private LoginRegisterView loginRegisterView;
     private MainScreenView mainScreenView;
     private ProfileController controller;
+    private AdminController adminController;
 
     public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainScreenView mainScreenView,
-                                   ProfileController controller) {
+                                   ProfileController controller,AdminController adminController) {
         this.user = user;
         this.loginRegisterView = loginRegisterView;
 
@@ -31,6 +32,8 @@ public class LoginRegisterController {
                 User.setLoggedInUser(user.getUsers().get(username));
                 System.out.println(User.getLoggedInUser());
                 controller.setLabels();
+
+                adminController.refreshTables();
 
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Invalid username or password.");

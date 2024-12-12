@@ -14,31 +14,32 @@ public class Main {
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
         Car mercedes2 = new Sedan("Merco1","C 180 AMG",2018,1200,
-                "src/Assets/mercedes-benz.png",
+                "src/Assets/tesla-logo.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
         Car mercedes3 = new Sedan("Merceee","C 180 AMG",2018,1200,
-                "src/Assets/mercedes-benz.png",
+                "src/Assets/audi-logo.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
         Car mercedes4 = new Sedan("Mercoasdsdf","C 180 AMG",2018,1200,
-                "src/Assets/mercedes-benz.png",
+                "src/Assets/bmw_logo.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
         Car mercedes5 = new Sedan("dgadsg","C 180 AMG",2018,1200,
-                "src/Assets/mercedes-benz.png",
+                "src/Assets/Toyota-Logo.png",
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
         LoginRegisterView loginRegisterView = new LoginRegisterView();
         MainListItemView mainListItemView = new MainListItemView(mercedes1);
         ProfileView profileView = new ProfileView();
-        profileView.init();
         AdminView adminView = new AdminView();
         MyRentsView myRentsView = new MyRentsView();
         CarDetailsView carDetailsView = new CarDetailsView();
         MainScreenView mainScreenView = new MainScreenView();
 
-        new LoginRegisterController(u1,loginRegisterView,mainScreenView,new ProfileController(loginRegisterView,profileView));
+        ProfileController controller = new ProfileController(loginRegisterView,profileView);
+        AdminController adminController = new AdminController(u1,mercedes1,adminView);
+        new LoginRegisterController(u1,loginRegisterView,mainScreenView,controller,adminController);
         new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
         new MainScreenController(u1, adminView,mainScreenView, profileView,myRentsView);
         new MainScreenListItemsController(mainScreenView);

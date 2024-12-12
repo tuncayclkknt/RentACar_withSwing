@@ -35,6 +35,7 @@ public class ProfileController {
         });
 
         profileView.addSaveListener(e->{
+
             User.getLoggedInUser().setName(profileView.getNameField().getText());
             User.getLoggedInUser().setSurname(profileView.getSurnameField().getText());
             User.getLoggedInUser().setUsername(profileView.getUsernameField().getText());
