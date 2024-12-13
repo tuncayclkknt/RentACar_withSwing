@@ -35,6 +35,10 @@ public class MainScreenListItemsController {
 
         System.out.println("Size" + MainListItemView.getMainListItems().size());
 
+//        for (JPanel listItem : MainListItemView.getMainListItems()){
+//            MainScreenView.getCardItems().add(listItem);
+//        }
+
         for (JPanel items: MainScreenView.getCardItems()){
             mainScreenView.getCarsCards().add(items);
         }

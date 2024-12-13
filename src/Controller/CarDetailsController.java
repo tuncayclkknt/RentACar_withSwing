@@ -18,10 +18,8 @@ public class CarDetailsController {
         this.carDetailsView = carDetailsView;
 
         for (Car car: Car.getCars()){
-
             MainListItemView mainListItemView = new MainListItemView(car);
-            mainListItemView.addToList();
-
+            MainListItemView.addToList(mainListItemView);
         }
 
 //        System.out.println("Size" + MainListItemView.getItems().size());

@@ -85,10 +85,10 @@ public class MainListItemView extends JPanel{
     }
 
     //Finally, I fixed it until the end B-)
-    public void addToList(){
+    public static void addToList(MainListItemView item){
         yCoordinate += 110;
         counter++;
-        mainListItems.add(this);
+        mainListItems.add(item);
     }
 
 //    public void addMainListItemListener(ActionListener listener){

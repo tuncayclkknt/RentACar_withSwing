@@ -41,6 +41,5 @@ public class MainScreenController {
             MainScreenView.getCardItems().add(listItem);
         }
 
-
     }
 }

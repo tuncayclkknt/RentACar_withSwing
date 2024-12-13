@@ -38,7 +38,7 @@ public class Main {
         MainScreenView mainScreenView = new MainScreenView();
 
         ProfileController controller = new ProfileController(loginRegisterView,profileView);
-        AdminController adminController = new AdminController(u1,mercedes1,adminView);
+        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView);
         new LoginRegisterController(u1,loginRegisterView,mainScreenView,controller,adminController);
         new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
         new MainScreenController(u1, adminView,mainScreenView, profileView,myRentsView);

@@ -50,6 +50,7 @@ public class AdminView extends JFrame{
         String[] carColumns = {"Make", "Model", "Year", "Price(daily)", "Logo", "Photo"};
         carTableModel = new DefaultTableModel(carColumns,0);
         JTable carTable = new JTable(carTableModel);
+        carTable.setDefaultEditor(Object.class,null);
         JScrollPane carTableScroll = new JScrollPane(carTable);
         carTableScroll.setBounds(20,60,660,350);
         contentPanel.add(carTableScroll);
@@ -150,6 +151,7 @@ public class AdminView extends JFrame{
         String[] userColumns = {"Name", "Surname", "Username","Password","isAdmin"};
         userTableModel = new DefaultTableModel(userColumns,0);
         JTable userTable = new JTable(userTableModel);
+        userTable.setDefaultEditor(Object.class,null);
         JScrollPane userTableScroll = new JScrollPane(userTable);
         userTableScroll.setBounds(20,490,660,300);
         contentPanel.add(userTableScroll);
