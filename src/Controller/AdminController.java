@@ -14,6 +14,7 @@ public class AdminController {
     private Car car;
     private AdminView adminView;
     private MainScreenView mainScreenView;
+    private Car newestCar;
 
     public AdminController(User user, Car car, AdminView adminView,MainScreenView mainScreenView) {
         this.car = car;
@@ -49,34 +50,11 @@ public class AdminController {
                 return;
             }
 
-            Car newestCar = new Car(carMake,carModel,Integer.parseInt(carYear),Double.parseDouble(carPrice),carLogoPath,carPhotoPath);
-            adminView.getCarTableModel().addRow(new Object[]{carMake,carModel,carYear,
+            newestCar = new Car(carMake,carModel,Integer.parseInt(carYear),Double.parseDouble(carPrice),carLogoPath,carPhotoPath);
+            adminView.getCarTableModel().addRow(new Object[]{carMake,carModel,carYear, carPrice,
                 carLogoPath,carPhotoPath});
 
-            MainScreenView.getCardItems().clear();
-
-            for (Car newCar: Car.getCars()){
-                if (newCar == newestCar){
-                MainListItemView mainListItemView = new MainListItemView(newCar);
-                MainListItemView.addToList(mainListItemView);
-                }
-            }
-
-            for (JPanel listItem : MainListItemView.getMainListItems()){
-                MainScreenView.getCardItems().add(listItem);
-            }
-
-            for (JPanel items: MainScreenView.getCardItems()){ //there is a missing part.
-                this.mainScreenView.getCarsCards().add(items);
-            }
-
-            mainScreenView.getCarsCards().setPreferredSize(new Dimension(650,
-                    MainListItemView.getCounter() * 110 + 30));
-
-            System.out.println("Items size: " + MainListItemView.getMainListItems().size());
-            System.out.println("Items size: " + MainScreenView.getCardItems().size());
-            System.out.println("Cars size: " + Car.getCars().size());
-
+            refreshMainTable();
 
         });
 
@@ -115,17 +93,20 @@ public class AdminController {
 
     public void refreshMainTable(){ // If conditions ara missing!
 
+        MainScreenView.getCardItems().clear();
 
         for (Car newCar: Car.getCars()){
-            MainListItemView mainListItemView = new MainListItemView(newCar);
-            MainListItemView.addToList(mainListItemView);
+            if (newCar == newestCar){
+                MainListItemView mainListItemView = new MainListItemView(newCar);
+                MainListItemView.addToList(mainListItemView);
+            }
         }
 
         for (JPanel listItem : MainListItemView.getMainListItems()){
             MainScreenView.getCardItems().add(listItem);
         }
 
-        for (JPanel items: MainScreenView.getCardItems()){
+        for (JPanel items: MainScreenView.getCardItems()){ //there is a missing part.
             this.mainScreenView.getCarsCards().add(items);
         }
 

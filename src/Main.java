@@ -1,7 +1,5 @@
 import Controller.*;
-import Model.Car;
-import Model.Sedan;
-import Model.User;
+import Model.*;
 import View.*;
 
 public class Main {
