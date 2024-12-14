@@ -5,6 +5,7 @@ import View.LoginRegisterView;
 import View.MainScreenView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class LoginRegisterController {
     private User user;
@@ -35,9 +36,9 @@ public class LoginRegisterController {
 
                 adminController.refreshTables();
 
-                if (User.getLoggedInUser().isAdmin()){
-                    mainScreenView.getBtnAdminPage().setVisible(true);
-                }
+                mainScreenView.getBtnAdminPage().setVisible( User.getLoggedInUser().isAdmin() ); //simplify if else
+
+                loginRegisterView.clearLoginInputs();
 
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Invalid username or password.");
@@ -52,6 +53,12 @@ public class LoginRegisterController {
             String username = loginRegisterView.getUsernameRegister();
             String password = loginRegisterView.getPasswordRegister();
 
+            if (name.isEmpty() || surname.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(loginRegisterView, "Fill the gaps!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             User newUser = new User(name,surname,username,password,false);
 
             if (user.addUser(newUser)) {
@@ -59,6 +66,14 @@ public class LoginRegisterController {
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Username already exists!");
             }
+
+            loginRegisterView.clearRegisterInputs();
+
+            //show login page, I will try to find a short way to do it.
+            loginRegisterView.getPanel().setVisible(true);
+            loginRegisterView.getPanel2().setVisible(false);
+            loginRegisterView.getBtnLoginPage().setEnabled(false);
+            loginRegisterView.getBtnRegisterPage().setEnabled(true);
 
             //Test
             System.out.println(user.getUsers());

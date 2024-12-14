@@ -15,7 +15,7 @@ public class Car {
     private static int nextID = 1;
     private int userID;
 
-    private static List<Car> cars = new ArrayList<>();
+    private static final List<Car> cars = new ArrayList<>();
 
     public Car(String make, String model, int year, double dailyPrice,
                String tinyPhotoPath, String bigPhotoPath) {

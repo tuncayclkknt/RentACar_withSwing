@@ -16,14 +16,11 @@ public class MainListItemView extends JPanel{
     private final JLabel priceLabel;
 
     private CarDetailsView carDetailsView;
+    private MainScreenView mainScreenView;
 
     //to put panels manually, top margin is 20 px
     private static int yCoordinate = 20; //there still is a bug //I solved, but I am not sure how I did??
     private static int counter = 0;
-
-    public static int getCounter() {
-        return counter;
-    }
 
     private static List<JPanel> mainListItems = new ArrayList<>();
 
@@ -83,16 +80,15 @@ public class MainListItemView extends JPanel{
 
 //        items.add(this); // I added this part and the bug was gone to hell. WTF java??
     }
+//
+//    public static void addToList(MainListItemView item){
+//        yCoordinate += 110;
+//        counter++;
+//        mainListItems.add(item);
+//    }
 
-    //Finally, I fixed it until the end B-)
-    public static void addToList(MainListItemView item){
-        yCoordinate += 110;
-        counter++;
-        mainListItems.add(item);
-    }
-
-//    public void addMainListItemListener(ActionListener listener){
-//        button.addActionListener(listener);
+//    public void clearMainListView(){
+//        mainScreenView.getCarsCards().removeAll();
 //    }
 
     //I will probably need later
@@ -107,5 +103,21 @@ public class MainListItemView extends JPanel{
 
     public static List<JPanel> getMainListItems() {
         return mainListItems;
+    }
+
+    public static int getyCoordinate() {
+        return yCoordinate;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        MainListItemView.counter = counter;
+    }
+
+    public static void setyCoordinate(int yCoordinate) {
+        MainListItemView.yCoordinate = yCoordinate;
     }
 }

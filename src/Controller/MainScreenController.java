@@ -13,18 +13,21 @@ public class MainScreenController {
     private MainScreenView mainScreenView;
     private AdminView adminView;
     private MainListItemView mainListItemView;
+    private LoginRegisterView loginRegisterView;
 
     public MainScreenController(User user, AdminView adminView, MainScreenView mainScreenView,
-                                ProfileView profileView, MyRentsView myRentsView) {
+                                ProfileView profileView, MyRentsView myRentsView,LoginRegisterView loginRegisterView) {
         this.user = user;
         this.mainScreenView = mainScreenView;
         this.adminView = adminView;
         this.profileView = profileView;
         this.myRentsView = myRentsView;
+        this.loginRegisterView = loginRegisterView;
 
 
         this.mainScreenView.addAdminPageListener(e-> {
             adminView.setVisible(true);
+            mainScreenView.dispose();
         });
 
         this.mainScreenView.addProfilePageListener(e->{
@@ -33,6 +36,14 @@ public class MainScreenController {
 
         this.mainScreenView.addMyRentsPageListener(e->{
             myRentsView.setVisible(true);
+        });
+
+        this.mainScreenView.addLogoutListener(e->{
+            mainScreenView.dispose();
+            profileView.dispose();
+            adminView.dispose();
+            myRentsView.dispose();
+            loginRegisterView.setVisible(true);
         });
 
         //test

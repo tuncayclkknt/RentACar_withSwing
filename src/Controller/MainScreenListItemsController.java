@@ -43,4 +43,19 @@ public class MainScreenListItemsController {
             mainScreenView.getCarsCards().add(items);
         }
     }
+
+    //Finally, I fixed it B-)
+    public static void addToList(MainListItemView item){
+        MainListItemView.setyCoordinate(MainListItemView.getyCoordinate() + 110);
+        MainListItemView.setCounter(MainListItemView.getCounter() + 1);
+        MainListItemView.getMainListItems().add(item);
+    }
+
+    //for update btn on admin controller panel.
+    public void clearMainListView(){
+        MainListItemView.setyCoordinate(20);
+        MainListItemView.setCounter(0);
+        mainScreenView.getCarsCards().removeAll();
+    }
+
 }

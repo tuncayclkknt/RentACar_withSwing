@@ -181,6 +181,18 @@ public class LoginRegisterView extends JFrame implements IResizeImage{
         add(panel2);
     }
 
+    public void clearLoginInputs(){
+        usernameField.setText("");
+        passwordField.setText("");
+    }
+
+    public void clearRegisterInputs(){
+        nameField.setText("");
+        surnameField.setText("");
+        usernameField2.setText("");
+        passwordField2.setText("");
+    }
+
     public void addLoginListener(ActionListener listener){
         btnLogin.addActionListener(listener);
     }
@@ -213,4 +225,19 @@ public class LoginRegisterView extends JFrame implements IResizeImage{
         return new String(passwordField2.getPassword());
     }
 
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public JPanel getPanel2() {
+        return panel2;
+    }
+
+    public JButton getBtnLoginPage() {
+        return btnLoginPage;
+    }
+
+    public JButton getBtnRegisterPage() {
+        return btnRegisterPage;
+    }
 }

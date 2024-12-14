@@ -19,7 +19,7 @@ public class CarDetailsController {
 
         for (Car car: Car.getCars()){
             MainListItemView mainListItemView = new MainListItemView(car);
-            MainListItemView.addToList(mainListItemView);
+            MainScreenListItemsController.addToList(mainListItemView);
         }
 
 //        System.out.println("Size" + MainListItemView.getItems().size());

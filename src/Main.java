@@ -5,7 +5,7 @@ import View.*;
 public class Main {
     public static void main(String[] args) {
 
-        User u1 = new User("Tuncay","Çelikkanat","tncy","123",true);
+        User u1 = new User("Tuncay","Çelikkanat","","",true);
 
         Car mercedes1 = new Sedan("Mercedes","C 180 AMG",2018,1200,
                 "src/Assets/mercedes-benz.png",
@@ -35,12 +35,14 @@ public class Main {
         CarDetailsView carDetailsView = new CarDetailsView();
         MainScreenView mainScreenView = new MainScreenView();
 
+
         ProfileController profileController = new ProfileController(loginRegisterView,profileView);
-        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView);
-        new LoginRegisterController(u1,loginRegisterView,mainScreenView,profileController,adminController);
         new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
-        new MainScreenController(u1, adminView,mainScreenView, profileView,myRentsView);
-        new MainScreenListItemsController(mainScreenView);
+        new MainScreenController(u1, adminView,mainScreenView, profileView,myRentsView,loginRegisterView);
+        MainScreenListItemsController mainScreenListItemsController = new MainScreenListItemsController(mainScreenView);
+        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView,mainScreenListItemsController);
+        new LoginRegisterController(u1,loginRegisterView,mainScreenView,profileController,adminController);
+
 
         loginRegisterView.setVisible(true);
 

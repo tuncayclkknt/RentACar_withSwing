@@ -298,6 +298,10 @@ public class MainScreenView extends JFrame{
         btnMyRents.addActionListener(listener);
     }
 
+    public void addLogoutListener(ActionListener listener){
+        btnLogout.addActionListener(listener);
+    }
+
     //------------
 
     public JButton getBtnApplySort() {
@@ -335,4 +339,5 @@ public class MainScreenView extends JFrame{
     public JButton getBtnAdminPage() {
         return btnAdminPage;
     }
+
 }
