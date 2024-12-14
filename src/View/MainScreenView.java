@@ -23,6 +23,7 @@ public class MainScreenView extends JFrame{
     private MainListItemView mainListItemView;
 
     private JButton btnAdminPage;
+    private JButton btnLogout;
     private JButton btnProfilePage;
     private JButton btnMyRents;
 
@@ -50,8 +51,6 @@ public class MainScreenView extends JFrame{
 //
 //        MainListItemView item = new MainListItemView(mercedes1);
 
-
-
         //add them in a panel
 //        carsCards.add(item);
 
@@ -69,11 +68,19 @@ public class MainScreenView extends JFrame{
         scrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPanel.setBounds(150, 180, 700, 500);
 
-        btnAdminPage = new JButton("Admin Page");
+        btnAdminPage = new JButton("ADMIN PAGE");
         btnAdminPage.setBounds(700,700,150,40);
         btnAdminPage.setBackground(new Color(0, 56, 255,255));
         btnAdminPage.setForeground(new Color(255, 255, 255,255));
         btnAdminPage.setFont(new Font("Arial", Font.PLAIN, 18));
+
+        btnAdminPage.setVisible(false);
+
+        btnLogout = new JButton("LOGOUT");
+        btnLogout.setBounds(150,700,150,40);
+//        btnLogout.setBackground(new Color(0, 56, 255,255));
+//        btnLogout.setForeground(new Color(255, 255, 255,255));
+        btnLogout.setFont(new Font("Arial", Font.PLAIN, 18));
 
 //        btnAdminPage.addActionListener(e->{
 //             if (adminView == null)
@@ -268,6 +275,7 @@ public class MainScreenView extends JFrame{
         add(sortPanel);
         add(searchPanel);
         add(scrollPanel);
+        add(btnLogout);
     }
 
     public void addAdminPageListener(ActionListener listener){
@@ -322,5 +330,9 @@ public class MainScreenView extends JFrame{
 
     public static List<JPanel> getCardItems() {
         return cardItems;
+    }
+
+    public JButton getBtnAdminPage() {
+        return btnAdminPage;
     }
 }

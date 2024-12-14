@@ -22,6 +22,7 @@ public class MainScreenController {
         this.profileView = profileView;
         this.myRentsView = myRentsView;
 
+
         this.mainScreenView.addAdminPageListener(e-> {
             adminView.setVisible(true);
         });

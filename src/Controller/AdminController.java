@@ -55,6 +55,8 @@ public class AdminController {
                 carLogoPath,carPhotoPath});
 
             refreshMainTable();
+            mainScreenView.dispose(); //change this part, when admin page is opened, main screen should be closed.
+            mainScreenView.setVisible(true);
 
         });
 
@@ -117,5 +119,9 @@ public class AdminController {
         System.out.println("Items size: " + MainScreenView.getCardItems().size());
         System.out.println("Cars size: " + Car.getCars().size());
 
+    }
+
+    public JButton adminPageButton(){
+        return mainScreenView.getBtnAdminPage();
     }
 }

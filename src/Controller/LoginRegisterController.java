@@ -35,6 +35,10 @@ public class LoginRegisterController {
 
                 adminController.refreshTables();
 
+                if (User.getLoggedInUser().isAdmin()){
+                    mainScreenView.getBtnAdminPage().setVisible(true);
+                }
+
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Invalid username or password.");
             }
