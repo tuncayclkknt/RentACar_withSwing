@@ -15,20 +15,26 @@ public class AdminController {
     private AdminView adminView;
     private MainScreenView mainScreenView;
     private Car newestCar;
-    private MainScreenListItemsController mainScreenListItemsController;
+    private User newUser;
+    private MainListItemsController mainListItemsController;
 
     public AdminController(User user, Car car, AdminView adminView,MainScreenView mainScreenView,
-                           MainScreenListItemsController mainScreenListItemsController) {
+                           MainListItemsController mainListItemsController) {
         this.car = car;
         this.user = user;
         this.adminView = adminView;
         this.mainScreenView = mainScreenView;
-        this.mainScreenListItemsController = mainScreenListItemsController;
+        this.mainListItemsController = mainListItemsController;
+
+        System.out.println("User on adminController: " + user.getUsers());
 
         this.adminView.addReturnMainPageListener(e->{
             adminView.dispose();
             mainScreenView.setVisible(true);
         });
+
+//        refreshTables();
+        System.out.println("User on adminController: " + user.getUsers());
 
         //when you select a row, gaps are fill.
         this.adminView.getCarTable().getSelectionModel().addListSelectionListener(e->{
@@ -169,6 +175,34 @@ public class AdminController {
 
         });
 
+        this.adminView.addBtnAddUserListener(e->{
+
+            String name = adminView.getNameTextField().getText();
+            String surname = adminView.getSurnameTextField().getText();
+            String username = adminView.getUsernameTextField().getText();
+            String password = adminView.getPasswordTextField().getText();
+            boolean isAdmin = adminView.getIsAdminTextField().isValid();
+//
+//            adminView.getUserTableModel().setRowCount(0);
+//            refreshTables();
+            for(User testUser: user.getUsers().values()){
+                System.out.println("->" + testUser);
+            }
+
+            if (name.isEmpty() || surname.isEmpty() || username.isEmpty() || password.isEmpty()){
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(adminView, "Fill the gaps!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            newUser = new User(name,surname,username,password,isAdmin);
+            if (user.addUser(newUser))
+                adminView.getUserTableModel().addRow(new Object[]{name,surname,username,password,isAdmin});
+            else
+                JOptionPane.showMessageDialog(adminView,"Error");
+
+        });
+
         //initial cars are add on table
         for (Car car2: Car.getCars()){
             adminView.getCarTableModel().addRow(new Object[]{car2.getMake(), car2.getModel(),
@@ -180,7 +214,6 @@ public class AdminController {
             adminView.getUserTableModel().addRow(new Object[]{user1.getName(),user1.getSurname(),
                     user1.getUsername(),user1.getPassword(),user1.isAdmin()});
         }
-
     }
 
     public void refreshTables(){
@@ -192,7 +225,8 @@ public class AdminController {
         }
 
         for (User user1: user.getUsers().values()){
-        if (!user1.getUsername().equals("tncy")){
+        if (!user1.getUsername().equals(""))
+            {
             adminView.getUserTableModel().addRow(new Object[]{user1.getName(),user1.getSurname(),
                     user1.getUsername(),user1.getPassword(),user1.isAdmin()});
             }
@@ -206,7 +240,7 @@ public class AdminController {
         for (Car newCar: Car.getCars()){
             if (newCar == newestCar){
                 MainListItemView mainListItemView = new MainListItemView(newCar);
-                MainScreenListItemsController.addToList(mainListItemView);
+                MainListItemsController.addToList(mainListItemView);
             }
         }
 
@@ -236,14 +270,14 @@ public class AdminController {
         System.out.println("Cars size: " + Car.getCars().size());
 
 //        mainScreenView.getCarsCards().removeAll();
-        mainScreenListItemsController.clearMainListView();
+        mainListItemsController.clearMainListView();
         // OMG I fixed these bugs, It took 2 days, but I did.
         // OOooooooOO I am better. Bye bye stupid bugs.
         // It is working well, and I know it seems soooo complex, I will find a way to make simple.
 
         for (Car newCar: Car.getCars()){
             MainListItemView mainListItemView = new MainListItemView(newCar);
-            MainScreenListItemsController.addToList(mainListItemView);
+            MainListItemsController.addToList(mainListItemView);
             System.out.println("->" + newCar.getMake());
         }
 

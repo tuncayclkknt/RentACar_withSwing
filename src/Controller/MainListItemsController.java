@@ -7,12 +7,12 @@ import View.MainScreenView;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainScreenListItemsController {
+public class MainListItemsController {
     private MainScreenView mainScreenView;
     private MainListItemView item;
     private CarDetailsView carDetailsView;
 
-    public MainScreenListItemsController(MainScreenView mainScreenView) {
+    public MainListItemsController(MainScreenView mainScreenView) {
         this.mainScreenView = mainScreenView;
 
         //this part needed for create scrollable panel, I found it after ~100 trying and

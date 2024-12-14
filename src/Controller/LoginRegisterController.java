@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.User;
+import View.AdminView;
 import View.LoginRegisterView;
 import View.MainScreenView;
 
@@ -13,11 +14,16 @@ public class LoginRegisterController {
     private MainScreenView mainScreenView;
     private ProfileController controller;
     private AdminController adminController;
+    private AdminView adminView;
 
     public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainScreenView mainScreenView,
-                                   ProfileController controller,AdminController adminController) {
+                                   ProfileController controller,AdminController adminController,AdminView adminView) {
         this.user = user;
         this.loginRegisterView = loginRegisterView;
+        this.mainScreenView = mainScreenView;
+        this.controller = controller;
+        this.adminController = adminController;
+        this.adminView = adminView;
 
         this.loginRegisterView.addLoginListener(e -> {
             String username = loginRegisterView.getUsernameLogin();
@@ -34,10 +40,8 @@ public class LoginRegisterController {
                 System.out.println(User.getLoggedInUser());
                 controller.setLabels();
 
-                adminController.refreshTables();
 
                 mainScreenView.getBtnAdminPage().setVisible( User.getLoggedInUser().isAdmin() ); //simplify if else
-
                 loginRegisterView.clearLoginInputs();
 
             } else {
@@ -62,7 +66,12 @@ public class LoginRegisterController {
             User newUser = new User(name,surname,username,password,false);
 
             if (user.addUser(newUser)) {
+
                 JOptionPane.showMessageDialog(loginRegisterView, "User registered successfully!");
+
+                adminView.getUserTableModel().setRowCount(1); //clear
+                adminController.refreshTables();
+
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Username already exists!");
             }

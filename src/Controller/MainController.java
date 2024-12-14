@@ -4,8 +4,9 @@ import Model.User;
 import View.*;
 
 import javax.swing.*;
+import java.util.Hashtable;
 
-public class MainScreenController {
+public class MainController {
 
     private User user;
     private ProfileView profileView;
@@ -15,8 +16,8 @@ public class MainScreenController {
     private MainListItemView mainListItemView;
     private LoginRegisterView loginRegisterView;
 
-    public MainScreenController(User user, AdminView adminView, MainScreenView mainScreenView,
-                                ProfileView profileView, MyRentsView myRentsView,LoginRegisterView loginRegisterView) {
+    public MainController(User user, AdminView adminView, MainScreenView mainScreenView,
+                          ProfileView profileView, MyRentsView myRentsView, LoginRegisterView loginRegisterView) {
         this.user = user;
         this.mainScreenView = mainScreenView;
         this.adminView = adminView;
@@ -28,6 +29,8 @@ public class MainScreenController {
         this.mainScreenView.addAdminPageListener(e-> {
             adminView.setVisible(true);
             mainScreenView.dispose();
+            System.out.println("User on mainController: " + user.getUsers());
+
         });
 
         this.mainScreenView.addProfilePageListener(e->{
@@ -52,6 +55,5 @@ public class MainScreenController {
         for (JPanel listItem : MainListItemView.getMainListItems()){
             MainScreenView.getCardItems().add(listItem);
         }
-
     }
 }

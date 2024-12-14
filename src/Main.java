@@ -35,14 +35,12 @@ public class Main {
         CarDetailsView carDetailsView = new CarDetailsView();
         MainScreenView mainScreenView = new MainScreenView();
 
-
         ProfileController profileController = new ProfileController(loginRegisterView,profileView);
         new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
-        new MainScreenController(u1, adminView,mainScreenView, profileView,myRentsView,loginRegisterView);
-        MainScreenListItemsController mainScreenListItemsController = new MainScreenListItemsController(mainScreenView);
-        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView,mainScreenListItemsController);
-        new LoginRegisterController(u1,loginRegisterView,mainScreenView,profileController,adminController);
-
+        MainController mainController = new MainController(u1, adminView,mainScreenView, profileView,myRentsView,loginRegisterView);
+        MainListItemsController mainListItemsController = new MainListItemsController(mainScreenView);
+        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView,mainListItemsController);
+        new LoginRegisterController(u1,loginRegisterView,mainScreenView,profileController,adminController,adminView);
 
         loginRegisterView.setVisible(true);
 
