@@ -28,17 +28,18 @@ public class Main {
                 "src/Assets/mercedes_c180amg_2018.jpg");
 
         LoginRegisterView loginRegisterView = new LoginRegisterView();
+        MainScreenView mainScreenView = new MainScreenView();
         MainListItemView mainListItemView = new MainListItemView(mercedes1);
         ProfileView profileView = new ProfileView();
         AdminView adminView = new AdminView();
         MyRentsView myRentsView = new MyRentsView();
-        CarDetailsView carDetailsView = new CarDetailsView();
-        MainScreenView mainScreenView = new MainScreenView();
+        CarDetailsView carDetailsView = new CarDetailsView(mercedes1);
 
         ProfileController profileController = new ProfileController(loginRegisterView,profileView);
-        new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
-        MainController mainController = new MainController(u1, adminView,mainScreenView, profileView,myRentsView,loginRegisterView);
-        MainListItemsController mainListItemsController = new MainListItemsController(mainScreenView);
+        new CarDetailsController(mainListItemView,mercedes1,carDetailsView);
+        MainController mainController = new MainController(u1, adminView,mainScreenView, profileView,myRentsView,loginRegisterView,carDetailsView,
+                mainListItemView);
+        MainListItemsController mainListItemsController = new MainListItemsController(mainScreenView,mainListItemView);
         AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView,mainListItemsController,mainController);
         new LoginRegisterController(u1,loginRegisterView,mainScreenView,profileController,adminController,adminView);
 

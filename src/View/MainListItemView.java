@@ -4,6 +4,7 @@ import Model.Car;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class MainListItemView extends JPanel{
     private CarDetailsView carDetailsView;
     private MainScreenView mainScreenView;
 
+    private Car car;
+
     //to put panels manually, top margin is 20 px
     private static int yCoordinate = 20; //there still is a bug //I solved, but I am not sure how I did??
     private static int counter = 0;
@@ -25,6 +28,7 @@ public class MainListItemView extends JPanel{
     private static List<JPanel> mainListItems = new ArrayList<>();
 
     public MainListItemView(Car car) {
+        this.car = car;
 
         ImageIcon angleRight = IResizeImage.resizeImage("src/Assets/angle-right.png",30,30);
         ImageIcon icon2 = IResizeImage.resizeImage(car.getLogoPath(),80,80);
@@ -64,8 +68,11 @@ public class MainListItemView extends JPanel{
         */
 
         button.addActionListener(e->{
+
+            System.out.println("Car:" + car.getMake());
+
             if (carDetailsView == null)
-                carDetailsView = new CarDetailsView();
+                carDetailsView = new CarDetailsView(car);
 
             if (!carDetailsView.isVisibleForScreen())
                 carDetailsView.setVisible(true);
@@ -91,15 +98,15 @@ public class MainListItemView extends JPanel{
 //        mainScreenView.getCarsCards().removeAll();
 //    }
 
-    //I will probably need later
-    public JButton getButton() {
-        return button;
-    }
-
-    //maybe I will need later but I am not sure
-    public JLabel getMakeLabel() {
-        return makeLabel;
-    }
+//    //I will probably need later
+//    public JButton getButton() {
+//        return button;
+//    }
+//
+//    //maybe I will need later but I am not sure
+//    public JLabel getMakeLabel() {
+//        return makeLabel;
+//    }
 
     public static List<JPanel> getMainListItems() {
         return mainListItems;
@@ -119,5 +126,13 @@ public class MainListItemView extends JPanel{
 
     public static void setyCoordinate(int yCoordinate) {
         MainListItemView.yCoordinate = yCoordinate;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public JButton getButton() {
+        return button;
     }
 }

@@ -12,8 +12,9 @@ public class MainListItemsController {
     private MainListItemView item;
     private CarDetailsView carDetailsView;
 
-    public MainListItemsController(MainScreenView mainScreenView) {
+    public MainListItemsController(MainScreenView mainScreenView,MainListItemView item) {
         this.mainScreenView = mainScreenView;
+        this.item = item;
 
         //this part needed for create scrollable panel, I found it after ~100 trying and
         //update -> I put this part after creating cars because of counter increment.
@@ -42,6 +43,13 @@ public class MainListItemsController {
         for (JPanel items: MainScreenView.getCardItems()){
             mainScreenView.getCarsCards().add(items);
         }
+
+        item.getButton().addActionListener(e->{
+
+            System.out.println("Car detail page.");
+            carDetailsView.setVisible(true);
+        });
+
     }
 
     //Finally, I fixed it B-)

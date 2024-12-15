@@ -9,10 +9,8 @@ public class CarDetailsController {
     private MainListItemView item;
     private Car car;
     private CarDetailsView carDetailsView;
-    private MainScreenView mainScreenView;
 
-    public CarDetailsController(MainListItemView item, Car carModel, CarDetailsView carDetailsView,
-                                MainScreenView mainScreenView) {
+    public CarDetailsController(MainListItemView item, Car carModel, CarDetailsView carDetailsView) {
         this.item = item;
         this.car = carModel;
         this.carDetailsView = carDetailsView;

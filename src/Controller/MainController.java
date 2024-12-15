@@ -10,6 +10,7 @@ public class MainController {
 
     private User user;
     private ProfileView profileView;
+    private CarDetailsView carDetailsView;
     private MyRentsView myRentsView;
     private MainScreenView mainScreenView;
     private AdminView adminView;
@@ -17,13 +18,16 @@ public class MainController {
     private LoginRegisterView loginRegisterView;
 
     public MainController(User user, AdminView adminView, MainScreenView mainScreenView,
-                          ProfileView profileView, MyRentsView myRentsView, LoginRegisterView loginRegisterView) {
+                          ProfileView profileView, MyRentsView myRentsView, LoginRegisterView loginRegisterView,
+                          CarDetailsView carDetailsView, MainListItemView mainListItemView) {
         this.user = user;
         this.mainScreenView = mainScreenView;
         this.adminView = adminView;
         this.profileView = profileView;
         this.myRentsView = myRentsView;
         this.loginRegisterView = loginRegisterView;
+        this.carDetailsView = carDetailsView;
+        this.mainListItemView = mainListItemView;
 
 
         this.mainScreenView.addAdminPageListener(e-> {
@@ -48,6 +52,15 @@ public class MainController {
             myRentsView.dispose();
             loginRegisterView.setVisible(true);
         });
+
+        this.mainListItemView.getButton().addActionListener(e->{
+            System.out.println("Clicked.");
+        });
+
+//        this.mainListItemView.addButtonActionListener(e->{
+//            System.out.println("Car detail page.");
+//            carDetailsView.setVisible(true);
+//        });
 
         //test
         System.out.println("Items size: " + MainListItemView.getMainListItems().size());

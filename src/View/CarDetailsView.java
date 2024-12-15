@@ -1,11 +1,22 @@
 package View;
 
+import Model.Car;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class CarDetailsView extends JFrame{
 
-    public CarDetailsView() {
+    private JButton button;
+
+    private JLabel carMake;
+    private JLabel modelName;
+    private JSpinner spinner;
+    private Car car;
+
+    public CarDetailsView(Car car) {
+        this.car = car;
+
         setResizable(false);
         setSize(400,800);
         setLayout(null);
@@ -19,23 +30,23 @@ public class CarDetailsView extends JFrame{
         int y = (screenSize.height - frameHeight - 50) / 2;
         setLocation(x, y);
 
-        ImageIcon icon = IResizeImage.resizeImage("src/Assets/mercedes_c180amg_2018.jpg",360,200);
+        ImageIcon icon = IResizeImage.resizeImage(car.getPhotoPath(),360,200);
         JLabel photo = new JLabel(icon);
         photo.setBounds(15,20,360,200);
 
-        JLabel carName = new JLabel("Mercedes-Benz");
-        carName.setFont(new Font("Arial", Font.PLAIN, 20));
-        carName.setBounds(15,240,200,30);
+        carMake = new JLabel(car.getMake());
+        carMake.setFont(new Font("Arial", Font.PLAIN, 20));
+        carMake.setBounds(15,240,200,30);
 
-        JLabel modelName = new JLabel("C 180 AMG");
+        modelName = new JLabel(car.getModel());
         modelName.setFont(new Font("Arial", Font.PLAIN, 20));
         modelName.setBounds(15,280,200,30);
 
-        JLabel year = new JLabel("Year: 2018");
+        JLabel year = new JLabel(String.valueOf(car.getYear()));
         year.setFont(new Font("Arial", Font.PLAIN, 20));
         year.setBounds(15,330,200,30);
 
-        JLabel dailyPrice = new JLabel("Daily Price: 1200.0 TL");
+        JLabel dailyPrice = new JLabel("Daily Price: " + car.getDailyPrice() + "TL");
         dailyPrice.setFont(new Font("Arial", Font.PLAIN, 20));
         dailyPrice.setBounds(15,360,200,30);
 
@@ -44,11 +55,11 @@ public class CarDetailsView extends JFrame{
         last.setBounds(140,600,240,30);
 
         SpinnerNumberModel model = new SpinnerNumberModel(1,1,5,1);
-        JSpinner spinner = new JSpinner(model);
+        spinner = new JSpinner(model);
         spinner.setFont(new Font("Arial", Font.PLAIN, 20));
         spinner.setBounds(260,600,60,30);
 
-        JButton button = new JButton("Rent");
+        button = new JButton("Rent");
         button.setFont(new Font("Arial", Font.PLAIN, 20));
         button.setBounds(260,640,80,40);
         button.setBackground(new Color(0, 56, 255,255));
@@ -56,7 +67,7 @@ public class CarDetailsView extends JFrame{
 
         button.addActionListener(e->{
 
-            String message = "You will pay " + (int)spinner.getValue()*1200 + "₺";
+            String message = "You will pay " + (int)spinner.getValue()*car.getDailyPrice() + "₺";
             String title = "Summary";
 
             Object[] options = {"Accept","Deny"};
@@ -84,12 +95,24 @@ public class CarDetailsView extends JFrame{
         add(last);
         add(dailyPrice);
         add(year);
-        add(carName);
+        add(carMake);
         add(modelName);
         add(photo);
     }
 
     public boolean isVisibleForScreen(){
         return isVisible();
+    }
+
+    public JLabel getCarMake() {
+        return carMake;
+    }
+
+    public JSpinner getSpinner() {
+        return spinner;
+    }
+
+    public JLabel getModelName() {
+        return modelName;
     }
 }
