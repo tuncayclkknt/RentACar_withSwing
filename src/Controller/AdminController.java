@@ -8,6 +8,7 @@ import View.MainScreenView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class AdminController {
     private User user;
@@ -17,14 +18,16 @@ public class AdminController {
     private Car newestCar;
     private User newUser;
     private MainListItemsController mainListItemsController;
+    private MainController mainController;
 
     public AdminController(User user, Car car, AdminView adminView,MainScreenView mainScreenView,
-                           MainListItemsController mainListItemsController) {
+                           MainListItemsController mainListItemsController,MainController mainController) {
         this.car = car;
         this.user = user;
         this.adminView = adminView;
         this.mainScreenView = mainScreenView;
         this.mainListItemsController = mainListItemsController;
+        this.mainController = mainController;
 
         System.out.println("User on adminController: " + user.getUsers());
 
@@ -55,6 +58,26 @@ public class AdminController {
                 adminView.getPriceTextField().setText(price);
                 adminView.getLogoTextField().setText(logoPath);
                 adminView.getPhotoTextField().setText(photoPath);
+            }
+        });
+
+        //when you select a row, gaps are fill.
+        this.adminView.getUserTable().getSelectionModel().addListSelectionListener(e->{
+
+            int selectedRow = adminView.getUserTable().getSelectedRow();
+
+            if (selectedRow != -1){
+                String name = (String) adminView.getUserTable().getValueAt(selectedRow,0);
+                String surname = (String) adminView.getUserTable().getValueAt(selectedRow,1);
+                String username = (String) adminView.getUserTable().getValueAt(selectedRow,2);
+                String password = (String) (adminView.getUserTable().getValueAt(selectedRow,3));
+                boolean isAdmin = (Boolean) adminView.getUserTable().getValueAt(selectedRow,4);
+
+                adminView.getNameTextField().setText(name);
+                adminView.getSurnameTextField().setText(surname);
+                adminView.getUsernameTextField().setText(username);
+                adminView.getPasswordTextField().setText(password);
+                adminView.getIsAdminCheckBox().setSelected(isAdmin);
             }
         });
 
@@ -93,6 +116,13 @@ public class AdminController {
             newestCar = new Car(carMake,carModel,Integer.parseInt(carYear),Double.parseDouble(carPrice),carLogoPath,carPhotoPath);
             adminView.getCarTableModel().addRow(new Object[]{carMake,carModel,carYear, carPrice,
                 carLogoPath,carPhotoPath});
+
+            adminView.getMakeTextField().setText("");
+            adminView.getModelTextField().setText("");
+            adminView.getYearTextField().setText("");
+            adminView.getPriceTextField().setText("");
+            adminView.getLogoTextField().setText("");
+            adminView.getPhotoTextField().setText("");
 
             refreshMainTableForAddition();
 
@@ -143,9 +173,20 @@ public class AdminController {
                 adminView.getCarTableModel().setValueAt(carPhotoPath,selectedRow,5);
 
                 Car currentCar = Car.getCars().get(adminView.getCarTable().getSelectedRow());
-                System.out.println(currentCar.getMake());
+
                 currentCar.setMake(carMake);
-                System.out.println(currentCar.getMake());
+                currentCar.setModel(carModel);
+                currentCar.setYear(Integer.parseInt(carYear));
+                currentCar.setDailyPrice(Integer.parseInt(carPrice));
+                currentCar.setLogoPath(carLogoPath);
+                currentCar.setPhotoPath(carPhotoPath);
+
+//                adminView.getMakeTextField().setText("");
+//                adminView.getModelTextField().setText("");
+//                adminView.getYearTextField().setText("");
+//                adminView.getPriceTextField().setText("");
+//                adminView.getLogoTextField().setText("");
+//                adminView.getPhotoTextField().setText("");
 
                 refreshMainTableForUpdateDelete();
 
@@ -181,10 +222,12 @@ public class AdminController {
             String surname = adminView.getSurnameTextField().getText();
             String username = adminView.getUsernameTextField().getText();
             String password = adminView.getPasswordTextField().getText();
-            boolean isAdmin = adminView.getIsAdminTextField().isValid();
-//
+            boolean isAdmin = adminView.getIsAdminCheckBox().isSelected();
+
+
 //            adminView.getUserTableModel().setRowCount(0);
 //            refreshTables();
+
             for(User testUser: user.getUsers().values()){
                 System.out.println("->" + testUser);
             }
@@ -196,17 +239,107 @@ public class AdminController {
             }
 
             newUser = new User(name,surname,username,password,isAdmin);
-            if (user.addUser(newUser))
+            if (user.addUser(newUser)){
                 adminView.getUserTableModel().addRow(new Object[]{name,surname,username,password,isAdmin});
+
+                adminView.getNameTextField().setText("");
+                adminView.getSurnameTextField().setText("");
+                adminView.getUsernameTextField().setText("");
+                adminView.getPasswordTextField().setText("");
+                adminView.getIsAdminCheckBox().setSelected(false);
+            }
             else
                 JOptionPane.showMessageDialog(adminView,"Error");
 
         });
 
+        this.adminView.addBtnUpdateUserListener(e->{
+
+            int selectedRow = adminView.getUserTable().getSelectedRow();
+
+            if (selectedRow != -1) {
+                String selectedUsername = String.valueOf(adminView.getUserTableModel().getValueAt(selectedRow,2));
+
+                String name = adminView.getNameTextField().getText();
+                String surname = adminView.getSurnameTextField().getText();
+                String username = adminView.getUsernameTextField().getText();
+                String password = adminView.getPasswordTextField().getText();
+                boolean isAdmin = adminView.getIsAdminCheckBox().isSelected();
+
+                if (name.isEmpty() || surname.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                    Toolkit.getDefaultToolkit().beep();
+                    JOptionPane.showMessageDialog(adminView, "Fill the gaps!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+//                if (user.getUsers().containsKey(username)){
+//                    Toolkit.getDefaultToolkit().beep();
+//                    JOptionPane.showMessageDialog(adminView, "This username already exist!", "Error", JOptionPane.ERROR_MESSAGE);
+//                    return;
+//                }
+
+                User temp = user.getUsers().get(selectedUsername); //Yeahhh, it is for a fixing.
+
+                if (mainController.usersBridge().get(selectedUsername) != null) {
+
+                    mainController.usersBridge().remove(selectedUsername);
+
+                    if (user.addUser(new User(name,surname,username,password,isAdmin))){
+
+
+                        adminView.getUserTableModel().setValueAt(name,selectedRow,0);
+                        adminView.getUserTableModel().setValueAt(surname,selectedRow,1);
+                        adminView.getUserTableModel().setValueAt(username,selectedRow,2);
+                        adminView.getUserTableModel().setValueAt(password,selectedRow,3);
+                        adminView.getUserTableModel().setValueAt(isAdmin,selectedRow,4);
+
+//                        mainController.usersBridge().get(selectedUsername).setName(name);
+//                        mainController.usersBridge().get(selectedUsername).setSurname(surname);
+//                        mainController.usersBridge().get(selectedUsername).setUsername(username);
+//                        mainController.usersBridge().get(selectedUsername).setPassword(password);
+//                        mainController.usersBridge().get(selectedUsername).setAdmin(isAdmin);
+
+//                        adminView.getNameTextField().setText("");
+//                        adminView.getSurnameTextField().setText("");
+//                        adminView.getUsernameTextField().setText("");
+//                        adminView.getPasswordTextField().setText("");
+//                        adminView.getIsAdminCheckBox().setSelected(false);
+
+                        //test
+                        System.out.println(user.getUsers());
+                    } else {
+                        Toolkit.getDefaultToolkit().beep();
+                        JOptionPane.showMessageDialog(adminView, "This username already exist!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                        user.getUsers().put(temp.getUsername(),temp);
+                    }
+                } else {
+                    System.out.println("user.getUsers().get(username) is null!!!");
+                }
+            }
+        });
+
+        this.adminView.addBtnDeleteUserListener(e->{
+
+            int selectedRow = adminView.getUserTable().getSelectedRow();
+            String selectedUsername = String.valueOf(adminView.getUserTableModel().getValueAt(selectedRow,2));
+
+            if (selectedRow != -1){
+
+                adminView.getUserTableModel().removeRow(selectedRow);
+                user.getUsers().remove(selectedUsername);
+
+            } else {
+                Toolkit.getDefaultToolkit().beep();
+                JOptionPane.showMessageDialog(adminView,"Select a row.",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
         //initial cars are add on table
         for (Car car2: Car.getCars()){
             adminView.getCarTableModel().addRow(new Object[]{car2.getMake(), car2.getModel(),
-            car2.getYear(),car2.getDailyPrice(), car2.getTinyPhotoPath(),car2.getBigPhotoPath()});
+            car2.getYear(),car2.getDailyPrice(), car2.getLogoPath(),car2.getPhotoPath()});
         }
 
         //initial users are add on table
@@ -220,14 +353,14 @@ public class AdminController {
         for (Car car2: Car.getCars()){
             if (!Car.getCars().contains(car2)) {
                 adminView.getCarTableModel().addRow(new Object[]{car2.getMake(), car2.getModel(),
-                        car2.getYear(), car2.getDailyPrice(), car2.getTinyPhotoPath(), car2.getBigPhotoPath()});
+                        car2.getYear(), car2.getDailyPrice(), car2.getLogoPath(), car2.getPhotoPath()});
             }
         }
 
         for (User user1: user.getUsers().values()){
-        if (!user1.getUsername().equals(""))
+        if (!user1.getUsername().isEmpty())
             {
-            adminView.getUserTableModel().addRow(new Object[]{user1.getName(),user1.getSurname(),
+                adminView.getUserTableModel().addRow(new Object[]{user1.getName(),user1.getSurname(),
                     user1.getUsername(),user1.getPassword(),user1.isAdmin()});
             }
         }

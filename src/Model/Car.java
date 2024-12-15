@@ -9,8 +9,8 @@ public class Car {
     private String model;
     private int year;
     private double dailyPrice;
-    private String tinyPhotoPath;
-    private String bigPhotoPath;
+    private String logoPath;
+    private String photoPath;
 
     private static int nextID = 1;
     private int userID;
@@ -18,13 +18,13 @@ public class Car {
     private static final List<Car> cars = new ArrayList<>();
 
     public Car(String make, String model, int year, double dailyPrice,
-               String tinyPhotoPath, String bigPhotoPath) {
+               String logoPath, String photoPath) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.dailyPrice = dailyPrice;
-        this.tinyPhotoPath = tinyPhotoPath;
-        this.bigPhotoPath = bigPhotoPath;
+        this.logoPath = logoPath;
+        this.photoPath = photoPath;
         this.carId = nextID++;
 
         cars.add(this);
@@ -67,20 +67,20 @@ public class Car {
         this.year = year;
     }
 
-    public String getTinyPhotoPath() {
-        return tinyPhotoPath;
+    public String getLogoPath() {
+        return logoPath;
     }
 
-    public void setTinyPhotoPath(String tinyPhotoPath) {
-        this.tinyPhotoPath = tinyPhotoPath;
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
     }
 
-    public String getBigPhotoPath() {
-        return bigPhotoPath;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setBigPhotoPath(String bigPhotoPath) {
-        this.bigPhotoPath = bigPhotoPath;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public double getDailyPrice() {

@@ -10,7 +10,6 @@ public class User {
     private boolean isAdmin;
 
     private Hashtable<String, User> users;
-
     private static User loggedInUser;
 
     public User(String name, String surname, String username,

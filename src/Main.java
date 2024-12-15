@@ -39,7 +39,7 @@ public class Main {
         new CarDetailsController(mainListItemView,mercedes1,carDetailsView,mainScreenView);
         MainController mainController = new MainController(u1, adminView,mainScreenView, profileView,myRentsView,loginRegisterView);
         MainListItemsController mainListItemsController = new MainListItemsController(mainScreenView);
-        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView,mainListItemsController);
+        AdminController adminController = new AdminController(u1,mercedes1,adminView,mainScreenView,mainListItemsController,mainController);
         new LoginRegisterController(u1,loginRegisterView,mainScreenView,profileController,adminController,adminView);
 
         loginRegisterView.setVisible(true);
@@ -49,6 +49,7 @@ public class Main {
         System.out.println("Items size: " + MainListItemView.getMainListItems().size());
         System.out.println("Items size: " + MainScreenView.getCardItems().size() + MainScreenView.getCardItems());
         System.out.println(mainScreenView.getCarsCards());
+        System.out.println("Users ->" + u1.getUsers());
         System.out.println(User.getLoggedInUser());
     }
 }

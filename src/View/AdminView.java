@@ -24,7 +24,7 @@ public class AdminView extends JFrame{
     private JTextField surnameTextField;
     private JTextField usernameTextField;
     private JTextField passwordTextField;
-    private JTextField isAdminTextField;
+    private JCheckBox isAdminCheckBox;
 
     private JButton btnAddCar;
     private JButton btnUpdateCar;
@@ -216,10 +216,11 @@ public class AdminView extends JFrame{
         isAdminLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         usersActionPanel.add(isAdminLabel);
 
-        isAdminTextField = new JTextField();
-        isAdminTextField.setBounds(155,230,250,40);
-        isAdminTextField.setFont(new Font("Arial", Font.PLAIN, 18));
-        usersActionPanel.add(isAdminTextField);
+        isAdminCheckBox = new JCheckBox();
+        isAdminCheckBox.setBounds(155,230,250,40);
+        isAdminCheckBox.setFont(new Font("Arial", Font.PLAIN, 20));
+        usersActionPanel.add(isAdminCheckBox);
+
 
         btnAddUser = new JButton("ADD");
         btnAddUser.setBounds(455,80,130,40);
@@ -293,8 +294,8 @@ public class AdminView extends JFrame{
         return carTableModel;
     }
 
-    public JTextField getIsAdminTextField() {
-        return isAdminTextField;
+    public JCheckBox getIsAdminCheckBox() {
+        return isAdminCheckBox;
     }
 
     public JTextField getPasswordTextField() {

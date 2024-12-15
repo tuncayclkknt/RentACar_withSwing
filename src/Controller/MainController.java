@@ -56,4 +56,8 @@ public class MainController {
             MainScreenView.getCardItems().add(listItem);
         }
     }
+
+    public Hashtable<String,User> usersBridge(){
+        return user.getUsers();
+    }
 }

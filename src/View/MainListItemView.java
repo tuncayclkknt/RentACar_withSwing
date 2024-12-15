@@ -27,7 +27,7 @@ public class MainListItemView extends JPanel{
     public MainListItemView(Car car) {
 
         ImageIcon angleRight = IResizeImage.resizeImage("src/Assets/angle-right.png",30,30);
-        ImageIcon icon2 = IResizeImage.resizeImage(car.getTinyPhotoPath(),80,80);
+        ImageIcon icon2 = IResizeImage.resizeImage(car.getLogoPath(),80,80);
 
         photoLabel = new JLabel(icon2);
         button = new JButton();
