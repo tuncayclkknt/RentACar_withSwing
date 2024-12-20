@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
-    private int carId;
     private String make;
     private String model;
     private int year;
@@ -13,7 +12,7 @@ public class Car {
     private String photoPath;
 
     private static int nextID = 1;
-    private int userID;
+    private int carId;
 
     private static final List<Car> cars = new ArrayList<>();
 
@@ -93,5 +92,9 @@ public class Car {
 
     public static List<Car> getCars() {
         return cars;
+    }
+
+    public static int getNextID() {
+        return nextID;
     }
 }

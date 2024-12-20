@@ -9,9 +9,11 @@ public class AdminView extends JFrame{
 
     private DefaultTableModel carTableModel;
     private DefaultTableModel userTableModel;
+    private DefaultTableModel rentedCarsModel;
 
     private JTable carTable;
     private JTable userTable;
+    private JTable rentedCarsTable;
 
     private JTextField makeTextField;
     private JTextField modelTextField;
@@ -49,14 +51,14 @@ public class AdminView extends JFrame{
 
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(null);
-        contentPanel.setPreferredSize(new Dimension(1400, 1000));
+        contentPanel.setPreferredSize(new Dimension(1400, 1500));
 
         JLabel carsLabel = new JLabel("Cars");
         carsLabel.setBounds(20,20,130,30);
         carsLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         contentPanel.add(carsLabel);
 
-        String[] carColumns = {"Make", "Model", "Year", "Price(daily)", "Logo", "Photo"};
+        String[] carColumns = {"Id","Make", "Model", "Year", "Price(daily)", "Logo", "Photo"};
         carTableModel = new DefaultTableModel(carColumns,0);
         carTable = new JTable(carTableModel);
         carTable.setDefaultEditor(Object.class,null);
@@ -221,6 +223,14 @@ public class AdminView extends JFrame{
         isAdminCheckBox.setFont(new Font("Arial", Font.PLAIN, 20));
         usersActionPanel.add(isAdminCheckBox);
 
+        String[] rentedCarsColumns = {"Username", "Car Id", "Car Make","Day Counter","Price"};
+        rentedCarsModel = new DefaultTableModel(rentedCarsColumns,0);
+        rentedCarsTable = new JTable(rentedCarsModel);
+        rentedCarsTable.setDefaultEditor(Object.class,null);
+        JScrollPane rentedCarsTableScroll = new JScrollPane(rentedCarsTable);
+        rentedCarsTableScroll.setBounds(20,870,660,300);
+        contentPanel.add(rentedCarsTableScroll);
+
 
         btnAddUser = new JButton("ADD");
         btnAddUser.setBounds(455,80,130,40);
@@ -285,6 +295,13 @@ public class AdminView extends JFrame{
         btnDeleteUser.addActionListener(listener);
     }
 
+    public DefaultTableModel getRentedCarsModel() {
+        return rentedCarsModel;
+    }
+
+    public JTable getRentedCarsTable() {
+        return rentedCarsTable;
+    }
 
     public DefaultTableModel getUserTableModel() {
         return userTableModel;

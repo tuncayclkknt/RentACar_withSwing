@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Car;
 import Model.User;
 import View.*;
 
@@ -51,6 +52,9 @@ public class MainController {
             adminView.dispose();
             myRentsView.dispose();
             loginRegisterView.setVisible(true);
+            System.out.println(user.getUsers());
+
+
         });
 
         this.mainListItemView.getButton().addActionListener(e->{
@@ -64,6 +68,11 @@ public class MainController {
 
         //test
         System.out.println("Items size: " + MainListItemView.getMainListItems().size());
+
+        for (Car car: Car.getCars()){
+            MainListItemView mainListItemView2 = new MainListItemView(car);
+            MainListItemsController.addToList(mainListItemView2);
+        }
 
         for (JPanel listItem : MainListItemView.getMainListItems()){
             MainScreenView.getCardItems().add(listItem);

@@ -1,6 +1,7 @@
 package View;
 
 import Model.Car;
+import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,7 @@ public class MainListItemView extends JPanel{
     private MainScreenView mainScreenView;
 
     private Car car;
+    private User user;
 
     //to put panels manually, top margin is 20 px
     private static int yCoordinate = 20; //there still is a bug //I solved, but I am not sure how I did??

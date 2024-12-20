@@ -4,6 +4,7 @@ import Model.User;
 import View.AdminView;
 import View.LoginRegisterView;
 import View.MainScreenView;
+import db.InsertData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +43,7 @@ public class LoginRegisterController {
                 System.out.println(User.getLoggedInUser());
                 controller.setLabels();
 
+                System.out.println("Control for login button ->" + user.getUsers());
 
                 mainScreenView.getBtnAdminPage().setVisible( User.getLoggedInUser().isAdmin() ); //simplify if else
                 loginRegisterView.clearLoginInputs();
@@ -73,6 +75,9 @@ public class LoginRegisterController {
 
                 adminView.getUserTableModel().setRowCount(1); //clear
                 adminController.refreshTables();
+
+                InsertData insertData = new InsertData();
+                insertData.insertUsers(newUser);
 
             } else {
                 JOptionPane.showMessageDialog(loginRegisterView, "Username already exists!");

@@ -1,6 +1,9 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 
 public class User {
     private String name;
@@ -9,7 +12,12 @@ public class User {
     private String password;
     private boolean isAdmin;
 
+
     private Hashtable<String, User> users;
+
+    //private List<Car> rentedCars;
+    private HashMap<Car,Integer> rentedCars;
+
     private static User loggedInUser;
 
     public User(String name, String surname, String username,
@@ -19,6 +27,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
+
+        rentedCars = new HashMap<>();
 
         users = new Hashtable<>();
         users.put(username,this);
@@ -34,11 +44,21 @@ public class User {
             return false;
     }
 
+    // ************ TRYING ************
+    public void addRentedCars(Car car, int quantity){
+        loggedInUser.rentedCars.put(car, quantity);
+    }
+
     public boolean check(String username, String password){
         return users.containsKey(username) && users.get(username).getPassword().equals(password);
     }
 
     //-----------------
+
+
+    public HashMap<Car, Integer> getRentedCars() {
+        return rentedCars;
+    }
 
     public String getName() {
         return name;
@@ -91,4 +111,5 @@ public class User {
     public static void setLoggedInUser(User user) {
         loggedInUser = user;
     }
+
 }
