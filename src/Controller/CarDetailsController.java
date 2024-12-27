@@ -1,10 +1,8 @@
 package Controller;
 
 import Model.Car;
-import Model.User;
 import View.CarDetailsView;
 import View.MainListItemView;
-import View.MainScreenView;
 
 import javax.swing.*;
 
@@ -37,7 +35,7 @@ public class CarDetailsController {
 
 //        System.out.println("Size" + MainListItemView.getItems().size());
 //
-//        for (JPanel items: MainScreenView.getCardItems()){
+//        for (JPanel items: MainView.getCardItems()){
 //            mainScreenView.getCarsCards().add(items);
 //        }
     }

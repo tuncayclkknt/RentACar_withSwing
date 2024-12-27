@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainScreenView extends JFrame{
+public class MainView extends JFrame{
 
     private final JPanel insideFilterPanel;
     private final JPanel insideSortPanel;
-    private JPanel carsCards;
+    private static JPanel carsCards;
+
+    private JRadioButton lowToHigh;
+    private JRadioButton highToLow;
 
     private JButton btnApplyFilter;
     private final JButton btnApplySort;
@@ -26,10 +29,16 @@ public class MainScreenView extends JFrame{
     private JButton btnLogout;
     private JButton btnProfilePage;
     private JButton btnMyRents;
+    private JButton btnCreatePDF;
+    private JButton btnSearch;
+    private JCheckBox suvCheckBox;
+    private JCheckBox sedanCheckBox;
+
+    private JTextField searchTextField;
 
     private static List<JPanel> cardItems = new ArrayList<>();
 
-    public MainScreenView() {
+    public MainView() {
 
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +46,14 @@ public class MainScreenView extends JFrame{
         setLocationRelativeTo(null);
         setLayout(null);
         getContentPane().setBackground(Color.white);
+
+        JLayeredPane layeredPane = new JLayeredPane(); //layered pane, I know it is a good explanation.
+        setContentPane(layeredPane);
+
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(Color.white);
+        backgroundPanel.setBounds(0, 0, 1400, 800); // Background
+        layeredPane.add(backgroundPanel, JLayeredPane.FRAME_CONTENT_LAYER);
 
         carsCards = new JPanel();
         carsCards.setLayout(null);
@@ -100,15 +117,15 @@ public class MainScreenView extends JFrame{
         searchPanel.setBorder(new RoundedBorder(15));
         searchPanel.setBackground(new Color(171, 252, 255,50));
 
-        JTextField search = new JTextField();
-        search.setBounds(10,10, 290,40);
-        search.setFont(new Font("Arial", Font.PLAIN, 20));
+        searchTextField = new JTextField();
+        searchTextField.setBounds(10,10, 290,40);
+        searchTextField.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        JButton btnSearch = new JButton();
+        btnSearch = new JButton();
         btnSearch.setIcon(searchIcon);
         btnSearch.setBounds(310,10,40,40);
 
-        searchPanel.add(search);
+        searchPanel.add(searchTextField);
         searchPanel.add(btnSearch);
 
         // Filter Panel
@@ -156,13 +173,14 @@ public class MainScreenView extends JFrame{
         insideFilterPanel.setBorder(new RoundedBorder(15));
         insideFilterPanel.setBounds(320,150,150,130);
         insideFilterPanel.setVisible(false);
+        layeredPane.add(insideFilterPanel, JLayeredPane.PALETTE_LAYER);
 
-        JCheckBox sedanCheckBox = new JCheckBox("Sedan");
+        sedanCheckBox = new JCheckBox("Sedan");
         sedanCheckBox.setFont(new Font("Arial", Font.PLAIN, 18));
         sedanCheckBox.setBounds(10,10,130,30);
         insideFilterPanel.add(sedanCheckBox);
 
-        JCheckBox suvCheckBox = new JCheckBox("SUV");
+        suvCheckBox = new JCheckBox("SUV");
         suvCheckBox.setFont(new Font("Arial", Font.PLAIN, 18));
         suvCheckBox.setBounds(10,50,130,30);
         insideFilterPanel.add(suvCheckBox);
@@ -180,13 +198,15 @@ public class MainScreenView extends JFrame{
         insideSortPanel.setBorder(new RoundedBorder(15));
         insideSortPanel.setBounds(530,150,150,130);
         insideSortPanel.setVisible(false);
+        layeredPane.add(insideSortPanel, JLayeredPane.PALETTE_LAYER);
 
-        JRadioButton lowToHigh = new JRadioButton("Low To High");
+        lowToHigh = new JRadioButton("Low To High");
         lowToHigh.setFont(new Font("Arial", Font.PLAIN, 18));
         lowToHigh.setBounds(10,10,130,30);
+        lowToHigh.setSelected(true);
         insideSortPanel.add(lowToHigh);
 
-        JRadioButton highToLow = new JRadioButton("High To Low");
+        highToLow = new JRadioButton("High To Low");
         highToLow.setFont(new Font("Arial", Font.PLAIN, 18));
         highToLow.setBounds(10,50,130,30);
         insideSortPanel.add(highToLow);
@@ -262,15 +282,21 @@ public class MainScreenView extends JFrame{
 //                myRentsView.show();
 //        });
 
+        btnCreatePDF = new JButton("Create PDF");
+        btnCreatePDF.setBounds(425,700,150,40);
+        btnCreatePDF.setFont(new Font("Arial", Font.PLAIN, 18));
+//        btnCreatePDF.setBackground(new Color(0, 56, 255,255));
+//        btnCreatePDF.setForeground(new Color(255, 255, 255,255));
 
         //classic addings cart curt.
+        add(btnCreatePDF);
         add(btnAdminPage);
         add(btnProfilePage);
         add(profileLabel);
         add(btnMyRents);
         add(myRentsLabel);
-        add(insideSortPanel);
-        add(insideFilterPanel);
+//        add(insideSortPanel);
+//        add(insideFilterPanel);
         add(filterPanel);
         add(sortPanel);
         add(searchPanel);
@@ -290,6 +316,8 @@ public class MainScreenView extends JFrame{
         btnSort.addActionListener(listener);
     }
 
+    public void addSearchListener(ActionListener listener) { btnSearch.addActionListener(listener);}
+
     public void addProfilePageListener(ActionListener listener){
         btnProfilePage.addActionListener(listener);
     }
@@ -301,6 +329,14 @@ public class MainScreenView extends JFrame{
     public void addLogoutListener(ActionListener listener){
         btnLogout.addActionListener(listener);
     }
+
+    public void addBtnCreatePDF(ActionListener listener){
+        btnCreatePDF.addActionListener(listener);
+    }
+
+    public void addApplySortListener(ActionListener listener){ btnApplySort.addActionListener(listener);}
+
+    public void addApplyFilterListener(ActionListener listener){ btnApplyFilter.addActionListener(listener);}
 
     //------------
 
@@ -328,7 +364,7 @@ public class MainScreenView extends JFrame{
         return btnFilter;
     }
 
-    public JPanel getCarsCards() {
+    public static JPanel getCarsCards() {
         return carsCards;
     }
 
@@ -340,4 +376,23 @@ public class MainScreenView extends JFrame{
         return btnAdminPage;
     }
 
+    public JTextField getSearchTextField() {
+        return searchTextField;
+    }
+
+    public JRadioButton getLowToHigh() {
+        return lowToHigh;
+    }
+
+    public JRadioButton getHighToLow() {
+        return highToLow;
+    }
+
+    public JCheckBox getSuvCheckBox() {
+        return suvCheckBox;
+    }
+
+    public JCheckBox getSedanCheckBox() {
+        return sedanCheckBox;
+    }
 }

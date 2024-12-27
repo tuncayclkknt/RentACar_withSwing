@@ -44,7 +44,6 @@ public class AdminView extends JFrame{
         setLocationRelativeTo(null);
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setBackground(Color.white);
 
         JLayeredPane layeredPane = new JLayeredPane(); //layered pane, I know it is a good explanation.
         setContentPane(layeredPane);
@@ -263,6 +262,7 @@ public class AdminView extends JFrame{
         btnReturnMainPage.setBackground(new Color(0, 56, 255,255));
         btnReturnMainPage.setForeground(new Color(255, 255, 255,255));
         layeredPane.add(btnReturnMainPage, JLayeredPane.PALETTE_LAYER);
+
 
 //        add(btnReturnMainPage);
 //        add(contentPanelScroll);

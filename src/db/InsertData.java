@@ -16,6 +16,7 @@ public class InsertData {
         return conn;
     }
 
+    // insert user
     public void insertUsers(User user){
         String sql = "INSERT INTO Users(name,surname,username,password,isAdmin) VALUES(?,?,?,?,?)";
         try{
@@ -38,7 +39,7 @@ public class InsertData {
         }
     }
 
-    // ürün tablsuna ürün girdisi yapar
+    // insert car
     public void insertCar(Car car){
         String sql = "INSERT INTO Cars(id,make, model, year, price, logoPath, photoPath) VALUES(?,?,?,?,?,?,?)";
         try{

@@ -5,7 +5,6 @@ import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class MainListItemView extends JPanel{
     private final JLabel priceLabel;
 
     private CarDetailsView carDetailsView;
-    private MainScreenView mainScreenView;
+    private MainView mainView;
 
     private Car car;
     private User user;
@@ -97,7 +96,7 @@ public class MainListItemView extends JPanel{
 //    }
 
 //    public void clearMainListView(){
-//        mainScreenView.getCarsCards().removeAll();
+//        mainView.getCarsCards().removeAll();
 //    }
 
 //    //I will probably need later

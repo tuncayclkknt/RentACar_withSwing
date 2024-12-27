@@ -4,19 +4,29 @@ import Model.Car;
 import Model.User;
 import View.AdminView;
 import View.MainListItemView;
-import View.MainScreenView;
+import View.MainView;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import db.DeleteData;
 import db.InsertData;
 import db.UpdateData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AdminController {
     private User user;
     private Car car;
     private AdminView adminView;
-    private MainScreenView mainScreenView;
+    private MainView mainView;
     private Car newestCar;
     private User newUser;
     private MainListItemsController mainListItemsController;
@@ -26,12 +36,12 @@ public class AdminController {
     private InsertData insertData;
     private UpdateData updateData;
 
-    public AdminController(User user, Car car, AdminView adminView,MainScreenView mainScreenView,
-                           MainListItemsController mainListItemsController,MainController mainController) {
+    public AdminController(User user, Car car, AdminView adminView, MainView mainView,
+                           MainListItemsController mainListItemsController, MainController mainController) {
         this.car = car;
         this.user = user;
         this.adminView = adminView;
-        this.mainScreenView = mainScreenView;
+        this.mainView = mainView;
         this.mainListItemsController = mainListItemsController;
         this.mainController = mainController;
 
@@ -43,7 +53,7 @@ public class AdminController {
 
         this.adminView.addReturnMainPageListener(e->{
             adminView.dispose();
-            mainScreenView.setVisible(true);
+            mainView.setVisible(true);
         });
 
 //        refreshTables();
@@ -396,7 +406,7 @@ public class AdminController {
 
     public void refreshMainTableForAddition(){ // If conditions ara missing!
 
-        MainScreenView.getCardItems().clear();
+        MainView.getCardItems().clear();
 
         for (Car newCar: Car.getCars()){
             if (newCar == newestCar){
@@ -406,32 +416,32 @@ public class AdminController {
         }
 
         for (JPanel listItem : MainListItemView.getMainListItems()){
-            MainScreenView.getCardItems().add(listItem);
+            MainView.getCardItems().add(listItem);
         }
 
-        for (JPanel items: MainScreenView.getCardItems()){ //there is a missing part.
-            this.mainScreenView.getCarsCards().add(items);
+        for (JPanel items: MainView.getCardItems()){ //there is a missing part.
+            MainView.getCarsCards().add(items);
         }
 
-        mainScreenView.getCarsCards().setPreferredSize(new Dimension(650,
+        MainView.getCarsCards().setPreferredSize(new Dimension(650,
                 MainListItemView.getCounter() * 110 + 30));
 
         System.out.println("Items size: " + MainListItemView.getMainListItems().size());
-        System.out.println("Items size: " + MainScreenView.getCardItems().size());
+        System.out.println("Items size: " + MainView.getCardItems().size());
         System.out.println("Cars size: " + Car.getCars().size());
 
     }
 
     public void refreshMainTableForUpdateDelete(){
-        MainScreenView.getCardItems().clear();
+        MainView.getCardItems().clear();
         MainListItemView.getMainListItems().clear();
 
         System.out.println("Items size: " + MainListItemView.getMainListItems().size());
-        System.out.println("Items size: " + MainScreenView.getCardItems().size());
+        System.out.println("Items size: " + MainView.getCardItems().size());
         System.out.println("Cars size: " + Car.getCars().size());
 
-//        mainScreenView.getCarsCards().removeAll();
-        mainListItemsController.clearMainListView();
+//        mainView.getCarsCards().removeAll();
+        MainListItemsController.clearMainListView();
         // OMG I fixed these bugs, It took 2 days, but I did.
         // OOooooooOO I am better. Bye bye stupid bugs.
         // It is working well, and I know it seems soooo complex, I will find a way to make simple.
@@ -443,18 +453,18 @@ public class AdminController {
         }
 
         for (JPanel listItem : MainListItemView.getMainListItems()){
-            MainScreenView.getCardItems().add(listItem);
+            MainView.getCardItems().add(listItem);
         }
 
-        for (JPanel items: MainScreenView.getCardItems()){ //there is a missing part.
-            this.mainScreenView.getCarsCards().add(items);
+        for (JPanel items: MainView.getCardItems()){ //there is a missing part.
+            MainView.getCarsCards().add(items);
         }
 
-        mainScreenView.getCarsCards().setPreferredSize(new Dimension(650,
+        MainView.getCarsCards().setPreferredSize(new Dimension(650,
                 MainListItemView.getCounter() * 110 + 30));
 
         System.out.println("Items size: " + MainListItemView.getMainListItems().size());
-        System.out.println("Items size: " + MainScreenView.getCardItems().size());
+        System.out.println("Items size: " + MainView.getCardItems().size());
         System.out.println("Cars size: " + Car.getCars().size());
     }
 }

@@ -20,7 +20,7 @@ public class Create {
         }
     }
 
-    // user table
+    // Car table
     public static void createCarTable(){
         String url = "jdbc:sqlite:RentACarDb";
         String sql = "CREATE TABLE IF NOT EXISTS Cars (\n"

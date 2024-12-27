@@ -2,24 +2,24 @@ package Controller;
 
 import View.CarDetailsView;
 import View.MainListItemView;
-import View.MainScreenView;
+import View.MainView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainListItemsController {
-    private MainScreenView mainScreenView;
+    private MainView mainView;
     private MainListItemView item;
     private CarDetailsView carDetailsView;
 
-    public MainListItemsController(MainScreenView mainScreenView,MainListItemView item) {
-        this.mainScreenView = mainScreenView;
+    public MainListItemsController(MainView mainView, MainListItemView item) {
+        this.mainView = mainView;
         this.item = item;
 
         //this part needed for create scrollable panel, I found it after ~100 trying and
         //update -> I put this part after creating cars because of counter increment.
 
-        mainScreenView.getCarsCards().setPreferredSize(new Dimension(650,
+        mainView.getCarsCards().setPreferredSize(new Dimension(650,
                 MainListItemView.getCounter() * 110 + 30));
 
         /* I will make the second part(590) dynamic, i found 590 like this;
@@ -37,11 +37,11 @@ public class MainListItemsController {
         System.out.println("Size" + MainListItemView.getMainListItems().size());
 
 //        for (JPanel listItem : MainListItemView.getMainListItems()){
-//            MainScreenView.getCardItems().add(listItem);
+//            MainView.getCardItems().add(listItem);
 //        }
 
-        for (JPanel items: MainScreenView.getCardItems()){
-            mainScreenView.getCarsCards().add(items);
+        for (JPanel items: MainView.getCardItems()){
+            mainView.getCarsCards().add(items);
         }
 
         item.getButton().addActionListener(e->{
@@ -60,10 +60,10 @@ public class MainListItemsController {
     }
 
     //for update btn on admin controller panel.
-    public void clearMainListView(){
+    public static void clearMainListView(){
         MainListItemView.setyCoordinate(20);
         MainListItemView.setCounter(0);
-        mainScreenView.getCarsCards().removeAll();
+        MainView.getCarsCards().removeAll();
     }
 
 }

@@ -31,7 +31,6 @@ public class LoginRegisterView extends JFrame implements IResizeImage{
 
         FlatLightLaf.setup();
 
-//        frame = new JFrame();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000,800);

@@ -3,27 +3,25 @@ package Controller;
 import Model.User;
 import View.AdminView;
 import View.LoginRegisterView;
-import View.MainScreenView;
+import View.MainView;
 import db.InsertData;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Comparator;
-import java.util.Map;
 
 public class LoginRegisterController {
     private User user;
     private LoginRegisterView loginRegisterView;
-    private MainScreenView mainScreenView;
+    private MainView mainView;
     private ProfileController controller;
     private AdminController adminController;
     private AdminView adminView;
 
-    public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainScreenView mainScreenView,
+    public LoginRegisterController(User user, LoginRegisterView loginRegisterView, MainView mainView,
                                    ProfileController controller,AdminController adminController,AdminView adminView) {
         this.user = user;
         this.loginRegisterView = loginRegisterView;
-        this.mainScreenView = mainScreenView;
+        this.mainView = mainView;
         this.controller = controller;
         this.adminController = adminController;
         this.adminView = adminView;
@@ -37,7 +35,7 @@ public class LoginRegisterController {
 //                User.setLoginUser(user.getUsers().get(username));
 
                 loginRegisterView.dispose();
-                mainScreenView.setVisible(true);
+                mainView.setVisible(true);
 
                 User.setLoggedInUser(user.getUsers().get(username));
                 System.out.println(User.getLoggedInUser());
@@ -45,7 +43,7 @@ public class LoginRegisterController {
 
                 System.out.println("Control for login button ->" + user.getUsers());
 
-                mainScreenView.getBtnAdminPage().setVisible( User.getLoggedInUser().isAdmin() ); //simplify if else
+                mainView.getBtnAdminPage().setVisible( User.getLoggedInUser().isAdmin() ); //simplify if else
                 loginRegisterView.clearLoginInputs();
 
             } else {

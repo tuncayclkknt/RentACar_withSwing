@@ -48,7 +48,6 @@ public class UpdateData {
         }
     }
 
-    //there is a problem in here, it for just I will notice
     public void updateUser(String name, String surname, String username, String password,int isAdmin){
 
         String sql = "UPDATE Users SET name = ?, surname = ?, password = ?," +
