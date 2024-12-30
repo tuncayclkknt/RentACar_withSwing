@@ -31,7 +31,7 @@ public class PdfSpecificationsController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm");
             String formattedDateTime = now.format(formatter);
 
-            String filePath = "C:/Users/tunca/Desktop/pdfs/"+ formattedDateTime + ".pdf";
+            String filePath = "Exported Files/"+ formattedDateTime + ".pdf";
             Document document = new Document();
 
             try {
@@ -66,7 +66,7 @@ public class PdfSpecificationsController {
                 table.addCell(header6);
 
                 List<Car> printedCars = new ArrayList<>(Car.getCars());
-                System.out.println(printedCars);
+//                System.out.println(printedCars);
 
                 // it was GOoOoOoOoD.
                 if (this.view.getSedanCheckBox().isSelected() && this.view.getSuvCheckBox().isSelected()){
@@ -96,7 +96,8 @@ public class PdfSpecificationsController {
                 }else
                     maxPrice = 0;
 
-                System.out.printf("minPrice: %.2f%nmaxPrice: %.2f%n",minPrice,maxPrice);
+                //Test
+//                System.out.printf("minPrice: %.2f%nmaxPrice: %.2f%n",minPrice,maxPrice);
 
 
 //                if (minPrice == 0 && maxPrice == 0){
@@ -120,13 +121,13 @@ public class PdfSpecificationsController {
                     if (printCar instanceof Sedan)
                         carClass = "Sedan";
 
-                    table.addCell(String.valueOf(carClass));
+                    table.addCell(carClass);
 
                 }
 
                 document.add(table);
                 JOptionPane.showMessageDialog(view,"PDF created -> " + filePath,
-                        "Successfull",JOptionPane.INFORMATION_MESSAGE);
+                        "Successfully",JOptionPane.INFORMATION_MESSAGE);
             } catch (DocumentException | IOException ex) {
                 ex.printStackTrace();
             } finally {

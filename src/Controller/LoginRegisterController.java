@@ -38,10 +38,10 @@ public class LoginRegisterController {
                 mainView.setVisible(true);
 
                 User.setLoggedInUser(user.getUsers().get(username));
-                System.out.println(User.getLoggedInUser());
+//                System.out.println(User.getLoggedInUser());
                 controller.setLabels();
 
-                System.out.println("Control for login button ->" + user.getUsers());
+//                System.out.println("Control for login button ->" + user.getUsers());
 
                 mainView.getBtnAdminPage().setVisible( User.getLoggedInUser().isAdmin() ); //simplify if else
                 loginRegisterView.clearLoginInputs();
@@ -90,7 +90,7 @@ public class LoginRegisterController {
             loginRegisterView.getBtnRegisterPage().setEnabled(true);
 
             //Test
-            System.out.println(user.getUsers());
+//            System.out.println(user.getUsers());
         });
     }
 }

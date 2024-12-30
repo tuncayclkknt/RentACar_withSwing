@@ -54,7 +54,7 @@ public class MainListItemView extends JPanel{
         makeLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 
         modelLabel.setFont(new Font("Arial", Font.ITALIC, 18));
-        modelLabel.setBounds(115,50,130,30);
+        modelLabel.setBounds(115,50,300,30);
 
         priceLabel.setBounds(450,35,130,30);
         priceLabel.setFont(new Font("Arial", Font.PLAIN, 20));

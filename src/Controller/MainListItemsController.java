@@ -19,7 +19,7 @@ public class MainListItemsController {
         //this part needed for create scrollable panel, I found it after ~100 trying and
         //update -> I put this part after creating cars because of counter increment.
 
-        mainView.getCarsCards().setPreferredSize(new Dimension(650,
+        MainView.getCarsCards().setPreferredSize(new Dimension(650,
                 MainListItemView.getCounter() * 110 + 30));
 
         /* I will make the second part(590) dynamic, i found 590 like this;
@@ -34,19 +34,19 @@ public class MainListItemsController {
                 you can make dynamic using this way...
          */
 
-        System.out.println("Size" + MainListItemView.getMainListItems().size());
+//        System.out.println("Size" + MainListItemView.getMainListItems().size());
 
 //        for (JPanel listItem : MainListItemView.getMainListItems()){
 //            MainView.getCardItems().add(listItem);
 //        }
 
         for (JPanel items: MainView.getCardItems()){
-            mainView.getCarsCards().add(items);
+            MainView.getCarsCards().add(items);
         }
 
         item.getButton().addActionListener(e->{
 
-            System.out.println("Car detail page.");
+//            System.out.println("Car detail page.");
             carDetailsView.setVisible(true);
         });
 

@@ -38,7 +38,7 @@ public class MainController {
         this.mainView.addAdminPageListener(e-> {
             adminView.setVisible(true);
             mainView.dispose();
-            System.out.println("User on mainController: " + user.getUsers());
+//            System.out.println("User on mainController: " + user.getUsers());
 
         });
 
@@ -56,7 +56,7 @@ public class MainController {
             adminView.dispose();
             myRentsView.dispose();
             loginRegisterView.setVisible(true);
-            System.out.println(user.getUsers());
+//            System.out.println(user.getUsers());
         });
 
         this.mainView.addBtnCreatePDF(e->{
@@ -64,7 +64,7 @@ public class MainController {
         });
 
         this.mainListItemView.getButton().addActionListener(e->{
-            System.out.println("Clicked.");
+            System.out.println("Clicked."); //don't work
         });
 
         this.mainView.addApplySortListener(e->{
@@ -89,7 +89,7 @@ public class MainController {
         this.mainView.addSearchListener(e->{
             System.out.println(this.mainView.getSearchTextField().getText());
             refreshMainTableForSort();
-            System.out.println("Main Card Items: " + MainView.getCardItems());
+//            System.out.println("Main Card Items: " + MainView.getCardItems());
         });
 
 
@@ -99,7 +99,7 @@ public class MainController {
 //        });
 
         //test
-        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
+//        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
 
         for (Car car: Car.getCars()){
             MainListItemView mainListItemView2 = new MainListItemView(car);
@@ -116,7 +116,7 @@ public class MainController {
         MainListItemView.getMainListItems().clear();
         MainListItemsController.clearMainListView();
 
-        System.out.println("Main Card Items after clear: " + MainView.getCardItems());
+//        System.out.println("Main Card Items after clear: " + MainView.getCardItems());
         String searchText = this.mainView.getSearchTextField().getText();
 
         for (Car car: Car.getCars()){

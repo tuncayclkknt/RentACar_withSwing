@@ -20,25 +20,45 @@ public class Main {
                 "src/Assets/mercedes_c180amg_2018.jpg");
         insertData.insertCar(mercedes1);
 
-        Car mercedes2 = new Sedan("Merco1","C 180 AMG",2018,2500,
-                "src/Assets/tesla-logo.png",
-                "src/Assets/mercedes_c180amg_2018.jpg");
+        Car mercedes2 = new Suv("Mercedes","G Class 63 AMG",2022,2500,
+                "src/Assets/mercedes-benz.png",
+                "src/Assets/2022-Mercedes-Benz-G-Class-G-63-AMG.jpg");
         insertData.insertCar(mercedes2);
 
-        Car mercedes3 = new Sedan("Merceee","C 180 AMG",2018,1700,
+        Car hyundai1 = new Sedan("Hyundai","i20 N",2023,1700,
+                "src/Assets/hyundai-logo.png",
+                "src/Assets/Hyundai-i20-N.jpg");
+        insertData.insertCar(hyundai1);
+
+        Car hyundai2 = new Suv("Hyundai","Tucson",2020,2000,
+                "src/Assets/hyundai-logo.png",
+                "src/Assets/hyundai-tucson-2020.jpg");
+        insertData.insertCar(hyundai2);
+
+        Car audi1 = new Sedan("Audi","A4",2017,2200,
                 "src/Assets/audi-logo.png",
-                "src/Assets/mercedes_c180amg_2018.jpg");
-        insertData.insertCar(mercedes3);
+                "src/Assets/2017-Audi-A4.jpg");
+        insertData.insertCar(audi1);
 
-        Car mercedes4 = new Suv("Mercoasdsdf","C 180 AMG",2018,2000,
-                "src/Assets/bmw_logo.png",
-                "src/Assets/mercedes_c180amg_2018.jpg");
-        insertData.insertCar(mercedes4);
+        Car audi2 = new Suv("Audi","Q7",2017,2400,
+                "src/Assets/audi-logo.png",
+                "src/Assets/2017_audi_q7.jpg");
+        insertData.insertCar(audi2);
 
-        Car mercedes5 = new Suv("dgadsg","C 180 AMG",2018,2200,
+        Car toyota1 = new Sedan("Toyota","Supra MK4",2001,3000,
                 "src/Assets/Toyota-Logo.png",
-                "src/Assets/mercedes_c180amg_2018.jpg");
-        insertData.insertCar(mercedes5);
+                "src/Assets/supra-7k.jpg");
+        insertData.insertCar(toyota1);
+
+        Car toyota2 = new Sedan("Toyota","Cross",2001,1750,
+                "src/Assets/Toyota-Logo.png",
+                "src/Assets/2022_Toyota_Corolla_Cross.jpg");
+        insertData.insertCar(toyota2);
+
+        Car tesla = new Sedan("Tesla","Model Y",2023,2750,
+                "src/Assets/tesla-logo.png",
+                "src/Assets/tesla-model-y-white.jpeg");
+        insertData.insertCar(tesla);
 
         LoginRegisterView loginRegisterView = new LoginRegisterView();
         MainView mainView = new MainView();
@@ -60,12 +80,12 @@ public class Main {
 
         loginRegisterView.setVisible(true);
 
-        System.out.println(Car.getCars());
-        System.out.println(MainListItemView.getMainListItems());
-        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
-        System.out.println("Items size: " + MainView.getCardItems().size() + MainView.getCardItems());
-        System.out.println(mainView.getCarsCards());
-        System.out.println("Users ->" + u1.getUsers());
-        System.out.println(User.getLoggedInUser());
+//        System.out.println(Car.getCars());
+//        System.out.println(MainListItemView.getMainListItems());
+//        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
+//        System.out.println("Items size: " + MainView.getCardItems().size() + MainView.getCardItems());
+//        System.out.println(MainView.getCarsCards());
+//        System.out.println("Users ->" + u1.getUsers());
+//        System.out.println(User.getLoggedInUser());
     }
 }

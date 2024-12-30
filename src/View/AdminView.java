@@ -230,7 +230,6 @@ public class AdminView extends JFrame{
         rentedCarsTableScroll.setBounds(20,870,660,300);
         contentPanel.add(rentedCarsTableScroll);
 
-
         btnAddUser = new JButton("ADD");
         btnAddUser.setBounds(455,80,130,40);
         btnAddUser.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -262,7 +261,6 @@ public class AdminView extends JFrame{
         btnReturnMainPage.setBackground(new Color(0, 56, 255,255));
         btnReturnMainPage.setForeground(new Color(255, 255, 255,255));
         layeredPane.add(btnReturnMainPage, JLayeredPane.PALETTE_LAYER);
-
 
 //        add(btnReturnMainPage);
 //        add(contentPanelScroll);

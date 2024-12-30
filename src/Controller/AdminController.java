@@ -49,7 +49,7 @@ public class AdminController {
         insertData = new InsertData();
         updateData = new UpdateData();
 
-        System.out.println("User on adminController: " + user.getUsers());
+//        System.out.println("User on adminController: " + user.getUsers());
 
         this.adminView.addReturnMainPageListener(e->{
             adminView.dispose();
@@ -57,7 +57,7 @@ public class AdminController {
         });
 
 //        refreshTables();
-        System.out.println("User on adminController: " + user.getUsers());
+//        System.out.println("User on adminController: " + user.getUsers());
 
         //when you select a row, gaps are fill.
         this.adminView.getCarTable().getSelectionModel().addListSelectionListener(e->{
@@ -104,7 +104,7 @@ public class AdminController {
         this.adminView.addBtnAddCarListener(e->{
 
             //*********** TEST *************
-            System.out.println(User.getLoggedInUser().getRentedCars());
+//            System.out.println(User.getLoggedInUser().getRentedCars());
 
             //maybe there is a simpler way.
             String carMake = adminView.getMakeTextField().getText();
@@ -347,7 +347,7 @@ public class AdminController {
                     adminView.getUserTable().clearSelection();
 
                     //test
-                    System.out.println(user.getUsers());
+//                    System.out.println(user.getUsers());
 
                 } else {
                     System.out.println("user.getUsers().get(username) is null!!!");
@@ -436,9 +436,9 @@ public class AdminController {
         MainView.getCardItems().clear();
         MainListItemView.getMainListItems().clear();
 
-        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
-        System.out.println("Items size: " + MainView.getCardItems().size());
-        System.out.println("Cars size: " + Car.getCars().size());
+//        System.out.println("Items size: " + MainListItemView.getMainListItems().size());
+//        System.out.println("Items size: " + MainView.getCardItems().size());
+//        System.out.println("Cars size: " + Car.getCars().size());
 
 //        mainView.getCarsCards().removeAll();
         MainListItemsController.clearMainListView();

@@ -73,7 +73,6 @@ public class ProfileView extends JFrame {
         passwordLabel.setBorder(new RoundedBorder(15));
         showInfoPanel.add(passwordLabel);
 
-
         //edit panel
         editInfoPanel = new JPanel();
         editInfoPanel.setLayout(null);

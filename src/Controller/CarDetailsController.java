@@ -16,12 +16,12 @@ public class CarDetailsController {
         this.car = carModel;
         this.carDetailsView = carDetailsView;
 
-        this.carDetailsView.addTestButtonListener(e->{
-
-            System.out.println("Button Clicked.");
-            JOptionPane.showMessageDialog(carDetailsView,"Test");
-
-        });
+//        this.carDetailsView.addTestButtonListener(e->{
+//
+//            System.out.println("Button Clicked.");
+//            JOptionPane.showMessageDialog(carDetailsView,"Test");
+//
+//        });
 
         // HOW YOU DON'T WORK!!!!
 

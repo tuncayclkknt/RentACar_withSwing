@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class CarDetailsView extends JFrame{
 
     private JButton rentButton;
-    private static JButton testButton;
+//    private static JButton testButton;
 
     private JLabel carMake;
     private JLabel modelName;
@@ -78,10 +78,10 @@ public class CarDetailsView extends JFrame{
         rentButton.setForeground(new Color(255, 255, 255,255));
         add(rentButton);
 
-        testButton = new JButton("Test");
-        testButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        testButton.setBounds(260,500,80,40);
-        add(testButton);
+//        testButton = new JButton("Test");
+//        testButton.setFont(new Font("Arial", Font.PLAIN, 20));
+//        testButton.setBounds(260,500,80,40);
+//        add(testButton);
 
         rentButton.addActionListener(e->{
 
@@ -111,9 +111,9 @@ public class CarDetailsView extends JFrame{
         });
     }
 
-    public void addTestButtonListener(ActionListener listener){
-        testButton.addActionListener(listener);
-    }
+//    public void addTestButtonListener(ActionListener listener){
+//        testButton.addActionListener(listener);
+//    }
 
     public void addRentButtonActionListener(ActionListener listener) {
         rentButton.addActionListener(listener);

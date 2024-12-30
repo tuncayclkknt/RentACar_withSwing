@@ -19,7 +19,6 @@ public class ProfileController {
         this.adminController =adminController;
         this.adminView = adminView;
 
-
     }
 
     public void setLabels(){
@@ -55,7 +54,7 @@ public class ProfileController {
             profileView.getUsernameLabel().setText("   Username: " + User.getLoggedInUser().getUsername());
             profileView.getPasswordLabel().setText("   Password : " + User.getLoggedInUser().getPassword());
 
-            System.out.println(User.getLoggedInUser().getName() + ", " +User.getLoggedInUser().getUsername());
+//            System.out.println(User.getLoggedInUser().getName() + ", " +User.getLoggedInUser().getUsername());
 
             profileView.getShowInfoPanel().setVisible(true);
             profileView.getEditInfoPanel().setVisible(false);
